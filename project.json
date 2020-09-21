@@ -1540,6 +1540,102 @@
 		},
 		"/StackShifter.bin": {
 			"sdcard": false
+		},
+		"/distributable/StackShift_PopBanner.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_36x36_Icon.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_24x24_Icon.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.1.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.2.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.3.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.4.gif": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.5.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.6.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.7.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.8.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter_Pokitto.bin.2.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter_Pokitto.bin.7.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter_Pokitto.bin.8.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter_Pokitto.bin.1.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_00.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_01.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_02.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_03.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter_Pokitto.bin": {
+			"sdcard": false
+		},
+		"/distributable/StackShift.bin": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.elf": {
+			"sdcard": false
+		},
+		"/StackShift.pop": {
+			"sdcard": false
+		},
+		"/StackShift.zip": {
+			"sdcard": false
+		},
+		"/distributable/StackShift.pop": {
+			"sdcard": false
+		},
+		"/distributable/StackShift.zip": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_PopBanner.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_01.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_02.h": {
+			"sdcard": false
+		},
+		"/StackShifter.gif": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter.gif": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,

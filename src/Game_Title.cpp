@@ -60,7 +60,7 @@ void Game::doTitle() {
     PD::drawBitmap(1, 30, Images::Title);
 
 
-    PD::drawBitmap(98, 30, Images::Title_Anim[(PC::frameCount / 12) % 4]);
+    PD::drawBitmap(98, 30, Images::Title_Anim[(PC::frameCount / 9) % 4]);
 
     PD::setColor(this->titleCursor == 0 ? 7 : 5, 0);
     PD::setCursor(12, 142);
