@@ -169,9 +169,7 @@ void Game::drawDropped() {
     if (dropCount > 0) {
 
         dropCount--;
-        bool dropBump;
-        dropBump = random(2);
-        PD::drawLine((dropCol * PART_SIZE) + BOARD_X_OFFSET + 4 + dropBump, (dropRow * PART_SIZE) + BOARD_Y_OFFSET, (dropCol * PART_SIZE) + BOARD_X_OFFSET + 4 + dropBump, ((dropRowSearch - 1)*PART_SIZE)  + BOARD_Y_OFFSET); //white
+        PD::drawLine((dropCol * PART_SIZE) + BOARD_X_OFFSET + 6, (dropRow * PART_SIZE) + BOARD_Y_OFFSET, (dropCol * PART_SIZE) + BOARD_X_OFFSET + 6, ((dropRowSearch - 1)*PART_SIZE)  + BOARD_Y_OFFSET); //white
 
     }
 

@@ -2,7 +2,7 @@
 
 #define SOUNDS
 #define _DEBUG
-//#define DEBUG_ROCKS
+#define _DEBUG_ROCKS
 
 #define ROCK_POINTS 25
 #define NO_SCORE 255

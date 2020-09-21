@@ -24,7 +24,7 @@ void Game::doHighScore_Init() {
         for (uint8_t y = 0; y < 16; y++) {
 
             if (y >= rnd && y <= rnd + 2) {
-                this->scoreGameBoard[x][y] = static_cast<uint8_t>(static_cast<uint8_t>(this->getRandomBoardType(0)) << 4) + random(4);
+                this->scoreGameBoard[x][y] = static_cast<uint8_t>(static_cast<uint8_t>(this->getRandomBoardType(this->level, 0)) << 4) + random(4);
             }
             else {
                 this->scoreGameBoard[x][y] = static_cast<uint8_t>(BoardType::None) << 4;
@@ -61,7 +61,7 @@ void Game::doHighScore() {
             }
 
             if (bt != BoardType::None) {
-                this->scoreGameBoard[x][0] = (static_cast<uint8_t>(this->getRandomBoardType(0)) << 4) + random(4);
+                this->scoreGameBoard[x][0] = (static_cast<uint8_t>(this->getRandomBoardType(this->level, 0)) << 4) + random(4);
             }
             else {
                 this->scoreGameBoard[x][0] = temp;

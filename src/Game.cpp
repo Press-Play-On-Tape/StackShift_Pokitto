@@ -161,6 +161,7 @@ void Game::loop(){
             break;
 
         case GameState::HighScore_Init:
+            Audio::stop();
             this->doHighScore_Init();
             break;
 

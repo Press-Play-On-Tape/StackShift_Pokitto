@@ -17,37 +17,47 @@ void Game::renderParticles() {
         if (particle.render()) {                                                             // the dot should be rendered
 
             particle.update();
+            uint8_t digits[5] = {};
+            Utils::extractDigits(digits, particle.getScore());
 
             switch (particle.getType()) {
 
                 case ParticleType::Score:
 
-                    PD::setFont(font5x7);
+                    PD::setFont(fontC64);
                     PD::setColor(0, 15);
 
                     switch (particle.getScore()) {
 
                         case 0 ... 9:
-                            PD::drawBitmap(particle.getX() - 3, particle.getY() - 2, Images::ScoreBalloons_Sml[static_cast<uint8_t>(particle.getColour())]);
+                            PD::drawBitmap(particle.getX() - 5, particle.getY() - 4, Images::ScoreBalloons_Sml[static_cast<uint8_t>(particle.getColour())]);
                             PD::setCursor(particle.getX(), particle.getY());
                             PD::print(particle.getScore(), 10);
                             break;
 
                         case 10 ... 99:
-                            PD::drawBitmap(particle.getX() - 3, particle.getY() - 2, Images::ScoreBalloons_Med[static_cast<uint8_t>(particle.getColour())]);
-                            PD::setCursor(particle.getX(), particle.getY());
-                            PD::print(particle.getScore(), 10);
+                            PD::drawBitmap(particle.getX() - 4, particle.getY() - 4, Images::ScoreBalloons_Med[static_cast<uint8_t>(particle.getColour())]);
+                            for (uint8_t j = 2, x2 = particle.getX(); j > 0; --j, x2 += 8) {
+                    
+                                PD::setCursor(x2, particle.getY());
+                                PD::print(digits[j - 1], 14);
+                    
+                            }                            
                             break;
 
                         case 100 ... 999:
-                            PD::drawBitmap(particle.getX() - 2, particle.getY() - 2, Images::ScoreBalloons_Lrg[static_cast<uint8_t>(particle.getColour())]);
-                            PD::setCursor(particle.getX(), particle.getY());
-                            PD::print(particle.getScore(), 10);
+
+                            PD::drawBitmap(particle.getX() - 3, particle.getY() - 4, Images::ScoreBalloons_Lrg[static_cast<uint8_t>(particle.getColour())]);
+                            for (uint8_t j = 3, x2 = particle.getX(); j > 0; --j, x2 += 8) {
+                    
+                                PD::setCursor(x2, particle.getY());
+                                PD::print(digits[j - 1], 14);
+                    
+                            }                            
                             break;
 
                     }
 
-                    PD::setFont(fontC64);  
                     break;
 
                 default:
@@ -153,24 +163,27 @@ void Game::launchParticles(uint8_t col, uint8_t row, ExplosionSize explosionSize
 void Game::launchPointsParticles(uint8_t col, uint8_t row, uint16_t points, Color color) {
 
     currentScore += points;
-    uint8_t scoreCount = 25;
+    uint8_t scoreCount = 90;
 
-    if (highScore > currentScore) scoreCount = 20;
+    const uint8_t size[3] = { 20, 26, 32 };
+    const uint8_t counts[3] = { 60, 90, 100 };
+    const uint8_t velY[3] = { 4, 5, 6 };
 
     for (Particle &particle : this->particles) {
 
         if (!particle.render()) {
 
-            uint8_t numOffset = 6;
+            uint8_t nums = 0;
 
-            if (points > 9) numOffset = 12;
-            uint8_t r = random(BOARD_X_OFFSET + (BOARD_WIDTH * PART_SIZE) + 4 + 16, 220 - 24);
-            // printf("random x %i\n",r);
+            if (points > 9)     nums = 1;
+            if (points > 99)    nums = 2;
+
+            uint8_t r = random(BOARD_X_OFFSET + (BOARD_WIDTH * PART_SIZE) + 4 + 16, 220 - size[nums]);
             particle.setX(r);
-            particle.setY((row * PART_SIZE) + BOARD_Y_OFFSET);
+            particle.setY((BOARD_HEIGHT * PART_SIZE) + BOARD_Y_OFFSET);
             particle.setVelX(0);
-            particle.setVelY(3.5);
-            particle.setCounter(scoreCount);
+            particle.setVelY(velY[nums]);
+            particle.setCounter(counts[nums]);
             particle.setSize(1);
             particle.setType(ParticleType::Score);
             particle.setColour(this->getColor(this->gameBoard[col][row]));

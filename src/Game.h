@@ -113,7 +113,7 @@ class Game {
         BoardType convertNewToExisting(BoardType boardType);
         BoardType convertToMarkedBlock(BoardType boardType);
         Color getColor(BoardType boardType);
-        BoardType getRandomBoardType(uint8_t rock);
+        BoardType getRandomBoardType(Level level, uint8_t rock);
 
 };
 

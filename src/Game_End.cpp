@@ -22,9 +22,9 @@ void Game::resetGame() {
 
     gameState = GameState::Play;
 
-    this->launchBlocks[2] = this->getRandomBoardType(0);
-    this->launchBlocks[3] = this->getRandomBoardType(0);
-    this->launchBlocks[4] = this->getRandomBoardType(0);
+    this->launchBlocks[2] = this->getRandomBoardType(this->level, 0);
+    this->launchBlocks[3] = this->getRandomBoardType(this->level, 0);
+    this->launchBlocks[4] = this->getRandomBoardType(this->level, 0);
 
     this->launchBlocks_Frames[2] = random(4);
     this->launchBlocks_Frames[3] = random(4);

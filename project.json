@@ -1486,6 +1486,60 @@
 		},
 		"/StackShifter_Pokitto.eeprom": {
 			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.1.gif": {
+			"sdcard": false
+		},
+		"/dsitrbiutable": {
+			"sdcard": false
+		},
+		"/dsitrbiutable/Title.png": {
+			"sdcard": false
+		},
+		"/distributable": {
+			"sdcard": false
+		},
+		"/distributable/Title.png": {
+			"sdcard": false
+		},
+		"/distributable/Title_00.png": {
+			"sdcard": false
+		},
+		"/distributable/StacKShifter_Banner.png": {
+			"sdcard": false
+		},
+		"/distributable/Title_00 copy.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter_24x24.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShifter_36x36.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Lrg_Green copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Lrg_Green copy 3.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Med_Green copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Med_Green copy 3.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Sml_Green copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Sml_Green copy 3.png": {
+			"sdcard": false
+		},
+		"/StackShifter_Pokitto.bin.2.gif": {
+			"sdcard": false
+		},
+		"/StackShifter.bin": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,

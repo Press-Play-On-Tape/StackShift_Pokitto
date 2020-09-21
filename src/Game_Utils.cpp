@@ -447,17 +447,26 @@ void Game::playTheme() {
 }
 
 
-BoardType Game::getRandomBoardType(uint8_t rock) {
+BoardType Game::getRandomBoardType(Level level, uint8_t rock) {
 
-    if (rock > 0 && random(0, rock) == 0) {
+    if (level == Level::Hard) {
 
-        return BoardType::New_Rock;
+        if (rock > 0 && random(0, rock) == 0) {
+
+            return BoardType::New_Rock;
+
+        }
+        else {
+
+            return static_cast<BoardType>(random(static_cast<uint8_t>(BoardType::New_First), static_cast<uint8_t>(BoardType::New_Last)));
+            
+        }
 
     }
     else {
 
-        return static_cast<BoardType>(random(static_cast<uint8_t>(BoardType::New_First), static_cast<uint8_t>(BoardType::New_Last)));
-        
+        return static_cast<BoardType>(random(static_cast<uint8_t>(BoardType::New_First), static_cast<uint8_t>(BoardType::New_Yellow) + 1));
+
     }
 
 }

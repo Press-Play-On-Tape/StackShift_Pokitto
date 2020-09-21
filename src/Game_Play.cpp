@@ -58,27 +58,27 @@ uint8_t Game::launchNewColumn() {
         switch (currentScore) {
 
             case 0 ... 100:
-                this->launchBlocks[2] = this->getRandomBoardType(0);
-                this->launchBlocks[3] = this->getRandomBoardType(0);
-                this->launchBlocks[4] = this->getRandomBoardType(0);
+                this->launchBlocks[2] = this->getRandomBoardType(this->level, 0);
+                this->launchBlocks[3] = this->getRandomBoardType(this->level, 0);
+                this->launchBlocks[4] = this->getRandomBoardType(this->level, 0);
                 break;
 
             case 101 ... 800:
-                this->launchBlocks[2] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_LOW_EASY : ROCK_FREQ_LOW_HARD);
-                this->launchBlocks[3] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_LOW_EASY : ROCK_FREQ_LOW_HARD);
-                this->launchBlocks[4] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_LOW_EASY : ROCK_FREQ_LOW_HARD);
+                this->launchBlocks[2] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_LOW_EASY : ROCK_FREQ_LOW_HARD);
+                this->launchBlocks[3] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_LOW_EASY : ROCK_FREQ_LOW_HARD);
+                this->launchBlocks[4] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_LOW_EASY : ROCK_FREQ_LOW_HARD);
                 break;
 
             case 801 ... 1600:
-                this->launchBlocks[2] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_MED_EASY : ROCK_FREQ_MED_HARD);
-                this->launchBlocks[3] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_MED_EASY : ROCK_FREQ_MED_HARD);
-                this->launchBlocks[4] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_MED_EASY : ROCK_FREQ_MED_HARD);
+                this->launchBlocks[2] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_MED_EASY : ROCK_FREQ_MED_HARD);
+                this->launchBlocks[3] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_MED_EASY : ROCK_FREQ_MED_HARD);
+                this->launchBlocks[4] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_MED_EASY : ROCK_FREQ_MED_HARD);
                 break;
 
             default:
-                this->launchBlocks[2] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_HIGH_EASY : ROCK_FREQ_HIGH_HARD);
-                this->launchBlocks[3] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_HIGH_EASY : ROCK_FREQ_HIGH_HARD);
-                this->launchBlocks[4] = this->getRandomBoardType(this->level == Level::Easy ? ROCK_FREQ_HIGH_EASY : ROCK_FREQ_HIGH_HARD);
+                this->launchBlocks[2] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_HIGH_EASY : ROCK_FREQ_HIGH_HARD);
+                this->launchBlocks[3] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_HIGH_EASY : ROCK_FREQ_HIGH_HARD);
+                this->launchBlocks[4] = this->getRandomBoardType(this->level, this->level == Level::Easy ? ROCK_FREQ_HIGH_EASY : ROCK_FREQ_HIGH_HARD);
                 break;
 
 
