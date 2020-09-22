@@ -191,6 +191,30 @@ BoardType Game::convertNewToExisting(BoardType boardType) {
 }
 
 
+
+// ------------------------------------------------------------
+//  Convert any piece to an existing piece
+//
+BoardType Game::convertAnyToExisting(BoardType boardType) {
+
+    switch (boardType) {
+
+        case BoardType::Marked_First ... BoardType::Marked_Last:
+
+            return static_cast<BoardType>(static_cast<uint8_t>(boardType) - 8);
+
+        case BoardType::New_First ... BoardType::New_Last:
+
+            return static_cast<BoardType>(static_cast<uint8_t>(boardType) - 4);
+
+        default:
+
+            return boardType;
+            
+    }
+
+}
+
 // ------------------------------------------------------------
 //  Convert a piece to an 'clear' block
 //
@@ -198,13 +222,17 @@ BoardType Game::convertToMarkedBlock(BoardType boardType) {
 
     switch (boardType) {
 
+        case BoardType::Existing_First ... BoardType::Existing_Last:
+
+            return static_cast<BoardType>(static_cast<uint8_t>(boardType) + 8);
+
         case BoardType::New_First ... BoardType::New_Last:
 
             return static_cast<BoardType>(static_cast<uint8_t>(boardType) + 4);
 
         default:
 
-            return static_cast<BoardType>(static_cast<uint8_t>(boardType) + 8);
+            return boardType;
             
     }
 

@@ -139,7 +139,7 @@ void Game::loop(){
 
             if (!this->moveCycle()) {
 
-                if (cycleCount >= gameSpeed || ((PC::buttons.pressed(BTN_DOWN) || PC::buttons.repeat(BTN_DOWN, 1) && cycleCount >= gameSpeed / 2))) {
+                if (cycleCount >= gameSpeed || ((PC::buttons.pressed(BTN_DOWN) || PC::buttons.repeat(BTN_DOWN, 1) && cycleCount >= 2))) {
                     this->boardCycle();
                     cycleCount = 0;
                 } 

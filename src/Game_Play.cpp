@@ -271,7 +271,7 @@ void Game::partStopped(uint8_t col, uint8_t row) {
     if (!scoringRowFound) {
 
         launchParticles(col, row, ExplosionSize::Small);
-        launchPointsParticles(col, row, BOARD_HEIGHT - row, this->getColor(this->gameBoard[col][row]));
+        launchPointsParticles(BOARD_HEIGHT - row, this->getColor(this->gameBoard[col][row]));
 
         this->scoringRowCount = SCORING_ROW_COUNT_PART_STOPPED;
 
@@ -300,7 +300,7 @@ void Game::partLanded(uint8_t col) {
         #endif
 
         launchParticles(col, BOARD_HEIGHT - 1, ExplosionSize::Medium);
-        launchPointsParticles(col, BOARD_HEIGHT - 1, 1, this->getColor(this->gameBoard[col][BOARD_HEIGHT - 1]));
+        launchPointsParticles(1, this->getColor(this->gameBoard[col][BOARD_HEIGHT - 1]));
         this->scoringRowCount = SCORING_ROW_COUNT_PART_STOPPED;
 
         #ifdef SOUNDS
@@ -324,6 +324,10 @@ void Game::partLanded(uint8_t col) {
 bool Game::markScoringRows() {
 
     bool scoringRowFound = false;
+
+    uint16_t score = 0;
+    uint8_t scoreRow = 255;
+    uint8_t scoreCol = 255;
     
     #ifdef DEBUG
     for (uint8_t col = 0; col < BOARD_WIDTH; col++) {
@@ -444,7 +448,7 @@ bool Game::markScoringRows() {
                                 if (gameBoard_Frames[col][row - 1] == 0) {
 
                                     gameBoard[col][row - 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(col, row - 1, ROCK_POINTS, Color::White);
+                                    launchPointsParticles(ROCK_POINTS, Color::White);
 
                                 }
                                 
@@ -475,7 +479,7 @@ bool Game::markScoringRows() {
                                 if (gameBoard_Frames[col][row + 1] == 0) {
 
                                     gameBoard[col][row + 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(col, row + 1, ROCK_POINTS, Color::White);
+                                    launchPointsParticles(ROCK_POINTS, Color::White);
 
                                 }
                                 
@@ -504,7 +508,7 @@ bool Game::markScoringRows() {
                             if (gameBoard_Frames[col - 1][row] == 0) {
 
                                 gameBoard[col - 1][row] = BoardType::Marked_Rock;
-                                launchPointsParticles(col - 1, row, ROCK_POINTS, Color::White);
+                                launchPointsParticles(ROCK_POINTS, Color::White);
 
                             }
                             
@@ -531,7 +535,7 @@ bool Game::markScoringRows() {
                             if (gameBoard_Frames[col + 1][row] == 0) {
 
                                 gameBoard[col + 1][row] = BoardType::Marked_Rock;
-                                launchPointsParticles(col + 1, row, ROCK_POINTS, this->getColor(this->gameBoard[col + 1][row]));
+                                launchPointsParticles(ROCK_POINTS, this->getColor(this->gameBoard[col + 1][row]));
 
                             }
                             
@@ -539,7 +543,14 @@ bool Game::markScoringRows() {
 
                     }
 
-                    launchPointsParticles(firstMatchCol, row, boardRowWins[bw][6], this->getColor(this->gameBoard[firstMatchCol][row]));
+                    // score = score + boardRowWins[bw][6];
+                    // if (scoreCol = 255) {
+
+                    //     scoreCol = firstMatchCol;
+                    //     scoreRow = row;
+
+                    // }
+                    launchPointsParticles(boardRowWins[bw][6], this->getColor(this->gameBoard[firstMatchCol][row]));
                     launchParticles(firstMatchCol, row, ExplosionSize::Large);
 
                     #ifdef DEBUG
@@ -548,9 +559,9 @@ bool Game::markScoringRows() {
 
                     scoringRowFound = true;
 
-                    #ifdef SOUNDS
-                    this->playSoundEffect(SoundTheme::Bubble_Med);
-                    #endif
+                    // #ifdef SOUNDS
+                    // this->playSoundEffect(SoundTheme::Bubble_Med);
+                    // #endif
 
                     break;
                 }
@@ -559,27 +570,35 @@ bool Game::markScoringRows() {
         
         }
 
-        if (scoringRowFound) break;
+        //if (scoringRowFound) break;
     
     }
+
+    // if (scoringRowFound) {
+
+    //     launchPointsParticles(boardRowWins[bw][6], this->getColor(this->gameBoard[firstMatchCol][row]));
+    //     launchParticles(firstMatchCol, row, ExplosionSize::Large);
+
+    // }
+printf("looking for cols\n");
 
 
     // Look for columns ..
 
-    if (!scoringRowFound) {
+    //if (!scoringRowFound) {
 
         for (uint8_t row = BOARD_HEIGHT - 1; row > 2; row--) {
 
             for (int col = 0; col < BOARD_WIDTH; col++) { 
 
                 uint8_t matches= 0;
-                BoardType toMatch = this->gameBoard[col][row];
+                BoardType toMatch = this->convertAnyToExisting(this->gameBoard[col][row]);
 
                 #ifdef DEBUG
-                //printf("Match Type=%i\n", (uint8_t)toMatch);
+                //printf("Match Type at %i, %i =%i\n", col, row, (uint8_t)toMatch);
                 #endif
 
-                if (this->isExistingPart(toMatch) && (this->level == Level::Easy || !this->isRockPart(toMatch))) {
+                if (this->isExistingPart(toMatch) && !this->isRockPart(toMatch)) {
 
                     for (int8_t row2 = row - 1; row2 >= 0; row2--) {
 
@@ -587,7 +606,7 @@ bool Game::markScoringRows() {
                         //printf("check a row2 = %i, val % i = ", row2, (uint8_t)this->gameBoard[col][row2]);
                         #endif
 
-                        if (this->gameBoard[col][row2] == toMatch) {
+                        if (this->convertAnyToExisting(this->gameBoard[col][row2]) == toMatch) {
 
                             matches++;
 
@@ -615,7 +634,16 @@ bool Game::markScoringRows() {
                         #endif
 
                         scoringRowFound = true;
-                        launchPointsParticles(col, row, boardColWins[matches], this->getColor(this->gameBoard[col][row]));
+                        // score = score + boardColWins[matches];
+
+                        // if (scoreCol = 255) {
+
+                        //     scoreCol = col;
+                        //     scoreRow = row;
+
+                        // }
+
+                        launchPointsParticles(boardColWins[matches], this->getColor(this->gameBoard[col][row]));
                         launchParticles(col, row, ExplosionSize::Large);
 
                         #ifdef SOUNDS
@@ -653,7 +681,7 @@ bool Game::markScoringRows() {
                                     if (gameBoard_Frames[col - 1][row - row2] == 0) {
 
                                         gameBoard[col - 1][row - row2] = BoardType::Marked_Rock;
-                                        launchPointsParticles(col - 1, row - row2, ROCK_POINTS, Color::White);
+                                        launchPointsParticles(ROCK_POINTS, Color::White);
 
                                     }
                                     
@@ -685,7 +713,7 @@ bool Game::markScoringRows() {
                                     if (gameBoard_Frames[col + 1][row - row2] == 0) {
 
                                         gameBoard[col + 1][row - row2] = BoardType::Marked_Rock;
-                                        launchPointsParticles(col + 1, row - row2, ROCK_POINTS, Color::White);
+                                        launchPointsParticles(ROCK_POINTS, Color::White);
 
                                     }
                                     
@@ -715,7 +743,7 @@ bool Game::markScoringRows() {
                                 if (gameBoard_Frames[col][row - matches - 1] == 0) {
 
                                     gameBoard[col][row - matches - 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(col, row - matches - 1, ROCK_POINTS, Color::White);
+                                    launchPointsParticles(ROCK_POINTS, Color::White);
 
                                 }
                                 
@@ -743,7 +771,7 @@ bool Game::markScoringRows() {
                                 if (gameBoard_Frames[col][row + 1] == 0) {
 
                                     gameBoard[col][row + 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(col, row + 1, ROCK_POINTS, Color::White);
+                                    launchPointsParticles(ROCK_POINTS, Color::White);
 
                                 }
                                 
@@ -763,7 +791,21 @@ bool Game::markScoringRows() {
 
         }
 
+    //}
+    
+    #ifdef DEBUG
+    for (uint8_t col = 0; col < BOARD_WIDTH; col++) {
+
+        for (uint8_t row = 0; row < BOARD_HEIGHT; row++) {
+
+            printf("%i ", (uint8_t)this->gameBoard[col][row]);
+
+        }
+
+        printf("\n");
+
     }
+    #endif
 
     #ifdef DEBUG
     printf("C scoringRowFound = %i\n", scoringRowFound);                    
@@ -1169,7 +1211,7 @@ bool Game::moveCycle() {
 
         if (isNewPart(col, row)) {
 
-            if (PC::buttons.pressed(BTN_RIGHT)) {
+            if (PC::buttons.pressed(BTN_RIGHT) || PC::buttons.repeat(BTN_RIGHT, 4)) {
 
                 if (col < BOARD_WIDTH - 1) {                                 // not at the right edge of the board
 
@@ -1242,7 +1284,7 @@ bool Game::moveCycle() {
 
             }
 
-            if (PC::buttons.pressed(BTN_LEFT)) {
+            if (PC::buttons.pressed(BTN_LEFT) || PC::buttons.repeat(BTN_LEFT, 4)) {
 
                 if (col > 0) {                                            // not at the left edge of the board
 

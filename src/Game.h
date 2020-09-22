@@ -76,7 +76,7 @@ class Game {
         void clearRow(uint8_t matchRow, uint8_t row);
         void launchStar();
         void launchParticles(uint8_t col, uint8_t row, ExplosionSize explosionSize);
-        void launchPointsParticles(uint8_t col, uint8_t row, uint16_t points, Color color);
+        void launchPointsParticles(uint16_t points, Color color);
         void launchHighScoreParticles();
         void moveDown();
         bool moveCycle(); // Skip boardCycle
@@ -112,6 +112,7 @@ class Game {
         bool isRockPart(BoardType boardType);
         BoardType convertNewToExisting(BoardType boardType);
         BoardType convertToMarkedBlock(BoardType boardType);
+        BoardType convertAnyToExisting(BoardType boardType);
         Color getColor(BoardType boardType);
         BoardType getRandomBoardType(Level level, uint8_t rock);
 
