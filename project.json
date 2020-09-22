@@ -1660,6 +1660,9 @@
 		},
 		"/StackShiftq.bin": {
 			"sdcard": false
+		},
+		"/StackShift_Pokitto.eeprom": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,
