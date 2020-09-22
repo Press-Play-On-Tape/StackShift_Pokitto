@@ -271,7 +271,7 @@ void Game::partStopped(uint8_t col, uint8_t row) {
     if (!scoringRowFound) {
 
         launchParticles(col, row, ExplosionSize::Small);
-        launchPointsParticles(BOARD_HEIGHT - row, this->getColor(this->gameBoard[col][row]));
+        launchPointsParticles(BOARD_HEIGHT - row, this->getColor(this->gameBoard[col][row]), 0);
 
         this->scoringRowCount = SCORING_ROW_COUNT_PART_STOPPED;
 
@@ -300,7 +300,7 @@ void Game::partLanded(uint8_t col) {
         #endif
 
         launchParticles(col, BOARD_HEIGHT - 1, ExplosionSize::Medium);
-        launchPointsParticles(1, this->getColor(this->gameBoard[col][BOARD_HEIGHT - 1]));
+        launchPointsParticles(1, this->getColor(this->gameBoard[col][BOARD_HEIGHT - 1]), 0);
         this->scoringRowCount = SCORING_ROW_COUNT_PART_STOPPED;
 
         #ifdef SOUNDS
@@ -325,9 +325,7 @@ bool Game::markScoringRows() {
 
     bool scoringRowFound = false;
 
-    uint16_t score = 0;
-    uint8_t scoreRow = 255;
-    uint8_t scoreCol = 255;
+    uint8_t scoreCount = 0;
     
     #ifdef DEBUG
     for (uint8_t col = 0; col < BOARD_WIDTH; col++) {
@@ -448,7 +446,7 @@ bool Game::markScoringRows() {
                                 if (gameBoard_Frames[col][row - 1] == 0) {
 
                                     gameBoard[col][row - 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(ROCK_POINTS, Color::White);
+                                    launchPointsParticles(ROCK_POINTS, Color::White, scoreCount++);
 
                                 }
                                 
@@ -479,7 +477,7 @@ bool Game::markScoringRows() {
                                 if (gameBoard_Frames[col][row + 1] == 0) {
 
                                     gameBoard[col][row + 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(ROCK_POINTS, Color::White);
+                                    launchPointsParticles(ROCK_POINTS, Color::White, scoreCount++);
 
                                 }
                                 
@@ -508,7 +506,7 @@ bool Game::markScoringRows() {
                             if (gameBoard_Frames[col - 1][row] == 0) {
 
                                 gameBoard[col - 1][row] = BoardType::Marked_Rock;
-                                launchPointsParticles(ROCK_POINTS, Color::White);
+                                launchPointsParticles(ROCK_POINTS, Color::White, scoreCount++);
 
                             }
                             
@@ -535,7 +533,7 @@ bool Game::markScoringRows() {
                             if (gameBoard_Frames[col + 1][row] == 0) {
 
                                 gameBoard[col + 1][row] = BoardType::Marked_Rock;
-                                launchPointsParticles(ROCK_POINTS, this->getColor(this->gameBoard[col + 1][row]));
+                                launchPointsParticles(ROCK_POINTS, this->getColor(this->gameBoard[col + 1][row]), scoreCount++);
 
                             }
                             
@@ -543,14 +541,7 @@ bool Game::markScoringRows() {
 
                     }
 
-                    // score = score + boardRowWins[bw][6];
-                    // if (scoreCol = 255) {
-
-                    //     scoreCol = firstMatchCol;
-                    //     scoreRow = row;
-
-                    // }
-                    launchPointsParticles(boardRowWins[bw][6], this->getColor(this->gameBoard[firstMatchCol][row]));
+                    launchPointsParticles(boardRowWins[bw][6], this->getColor(this->gameBoard[firstMatchCol][row]), scoreCount++);
                     launchParticles(firstMatchCol, row, ExplosionSize::Large);
 
                     #ifdef DEBUG
@@ -559,225 +550,51 @@ bool Game::markScoringRows() {
 
                     scoringRowFound = true;
 
-                    // #ifdef SOUNDS
-                    // this->playSoundEffect(SoundTheme::Bubble_Med);
-                    // #endif
-
                     break;
                 }
             
             }
         
         }
-
-        //if (scoringRowFound) break;
     
     }
-
-    // if (scoringRowFound) {
-
-    //     launchPointsParticles(boardRowWins[bw][6], this->getColor(this->gameBoard[firstMatchCol][row]));
-    //     launchParticles(firstMatchCol, row, ExplosionSize::Large);
-
-    // }
-printf("looking for cols\n");
 
 
     // Look for columns ..
 
-    //if (!scoringRowFound) {
+    for (uint8_t row = BOARD_HEIGHT - 1; row > 2; row--) {
 
-        for (uint8_t row = BOARD_HEIGHT - 1; row > 2; row--) {
+        for (int col = 0; col < BOARD_WIDTH; col++) { 
 
-            for (int col = 0; col < BOARD_WIDTH; col++) { 
+            uint8_t matches= 0;
+            BoardType toMatch = this->convertAnyToExisting(this->gameBoard[col][row]);
 
-                uint8_t matches= 0;
-                BoardType toMatch = this->convertAnyToExisting(this->gameBoard[col][row]);
+            #ifdef DEBUG
+            //printf("Match Type at %i, %i =%i\n", col, row, (uint8_t)toMatch);
+            #endif
 
-                #ifdef DEBUG
-                //printf("Match Type at %i, %i =%i\n", col, row, (uint8_t)toMatch);
-                #endif
+            if (this->isExistingPart(toMatch) && !this->isRockPart(toMatch)) {
 
-                if (this->isExistingPart(toMatch) && !this->isRockPart(toMatch)) {
+                for (int8_t row2 = row - 1; row2 >= 0; row2--) {
 
-                    for (int8_t row2 = row - 1; row2 >= 0; row2--) {
+                    #ifdef DEBUG
+                    //printf("check a row2 = %i, val % i = ", row2, (uint8_t)this->gameBoard[col][row2]);
+                    #endif
+
+                    if (this->convertAnyToExisting(this->gameBoard[col][row2]) == toMatch) {
+
+                        matches++;
 
                         #ifdef DEBUG
-                        //printf("check a row2 = %i, val % i = ", row2, (uint8_t)this->gameBoard[col][row2]);
+                        //printf("check b row = %i, mtaches % i\n", row, matches);
                         #endif
-
-                        if (this->convertAnyToExisting(this->gameBoard[col][row2]) == toMatch) {
-
-                            matches++;
-
-                            #ifdef DEBUG
-                            //printf("check b row = %i, mtaches % i\n", row, matches);
-                            #endif
-
-                        }
-                        else {
-
-                            #ifdef DEBUG
-                            //printf("\n");
-                            #endif
-
-                            break;
-
-                        }
 
                     }
-
-                    if (matches >= 2) {
+                    else {
 
                         #ifdef DEBUG
-                        printf("Col match found at %i, %i\n", col, row);
+                        //printf("\n");
                         #endif
-
-                        scoringRowFound = true;
-                        // score = score + boardColWins[matches];
-
-                        // if (scoreCol = 255) {
-
-                        //     scoreCol = col;
-                        //     scoreRow = row;
-
-                        // }
-
-                        launchPointsParticles(boardColWins[matches], this->getColor(this->gameBoard[col][row]));
-                        launchParticles(col, row, ExplosionSize::Large);
-
-                        #ifdef SOUNDS
-                        this->playSoundEffect(SoundTheme::Bubble_Long);
-                        #endif
-
-                        for (uint8_t row2 = 0; row2 <= matches; row2++) {
-
-                            this->gameBoard[col][row - row2] = this->convertToMarkedBlock(this->gameBoard[col][row - row2]);
-
-                        }
-
-
-
-                        // Check for rocks ..
-
-                        // Left ..
-
-                        if (col > 0) {
-
-                            for (uint8_t row2 = 0; row2 <= matches; row2++) {
-
-                                if (this->isMarkedPart(gameBoard[col][row - row2]) && (this->gameBoard[col - 1][row - row2] == BoardType::Existing_Rock)) {
-
-                                    #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                    printf("E (%i,%i) %i > ", col-1, row-row2, gameBoard_Frames[col - 1][row - row2]);
-                                    #endif
-
-                                    --gameBoard_Frames[col - 1][row - row2];
-
-                                    #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                    printf("%i\n ", gameBoard_Frames[col - 1][row - row2]);
-                                    #endif
-
-                                    if (gameBoard_Frames[col - 1][row - row2] == 0) {
-
-                                        gameBoard[col - 1][row - row2] = BoardType::Marked_Rock;
-                                        launchPointsParticles(ROCK_POINTS, Color::White);
-
-                                    }
-                                    
-                                }
-
-                            }
-
-                        }
-
-
-                        // Right ..
-
-                        if (col < BOARD_WIDTH - 1) {
-
-                            for (uint8_t row2 = 0; row2 <= matches; row2++) {
-
-                                if (this->isMarkedPart(gameBoard[col][row - row2]) && (this->gameBoard[col + 1][row - row2] == BoardType::Existing_Rock)) {
-
-                                    #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                    printf("F(%i,%i)  %i > ", col+1, row-row2, gameBoard_Frames[col + 1][row - row2]);
-                                    #endif
-
-                                    --gameBoard_Frames[col + 1][row - row2];
-
-                                    #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                    printf("%i\n ", gameBoard_Frames[col + 1][row - row2]);
-                                    #endif
-
-                                    if (gameBoard_Frames[col + 1][row - row2] == 0) {
-
-                                        gameBoard[col + 1][row - row2] = BoardType::Marked_Rock;
-                                        launchPointsParticles(ROCK_POINTS, Color::White);
-
-                                    }
-                                    
-                                }
-
-                            }
-
-                        }
-
-
-                        // Top ..
-
-                        if (row - matches > 0) {
-
-                            if (this->isMarkedPart(gameBoard[col][row - matches]) && (gameBoard[col][row - matches - 1] == BoardType::Existing_Rock)) {
-
-                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                printf("G (%i,%i) %i > ", col, row-matches-1, gameBoard_Frames[col][row - matches - 1]);
-                                #endif
-
-                                --gameBoard_Frames[col][row - matches - 1];
-
-                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                printf("%i\n ", gameBoard_Frames[col][row - matches - 1]);
-                                #endif
-
-                                if (gameBoard_Frames[col][row - matches - 1] == 0) {
-
-                                    gameBoard[col][row - matches - 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(ROCK_POINTS, Color::White);
-
-                                }
-                                
-                            }
-
-                        }
-
-
-                        // Bottom ..
-
-                        if (row < BOARD_HEIGHT - 1) {
-
-                            if (this->isMarkedPart(gameBoard[col][row]) && (gameBoard[col][row + 1] == BoardType::Existing_Rock)) {
-
-                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                printf("H %(%i,%i) i > ", col, row+1, gameBoard_Frames[col][row + 1]);
-                                #endif
-
-                                --gameBoard_Frames[col][row + 1];
-
-                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
-                                printf("%i\n ", gameBoard_Frames[col][row + 1]);
-                                #endif
-
-                                if (gameBoard_Frames[col][row + 1] == 0) {
-
-                                    gameBoard[col][row + 1] = BoardType::Marked_Rock;
-                                    launchPointsParticles(ROCK_POINTS, Color::White);
-
-                                }
-                                
-                            }
-
-                        }
 
                         break;
 
@@ -785,25 +602,171 @@ printf("looking for cols\n");
 
                 }
 
+                if (matches >= 2) {
+
+                    #ifdef DEBUG
+                    printf("Col match found at %i, %i\n", col, row);
+                    #endif
+
+                    scoringRowFound = true;
+                    launchPointsParticles(boardColWins[matches], this->getColor(this->gameBoard[col][row]), scoreCount++);
+                    launchParticles(col, row, ExplosionSize::Large);
+
+                    for (uint8_t row2 = 0; row2 <= matches; row2++) {
+
+                        this->gameBoard[col][row - row2] = this->convertToMarkedBlock(this->gameBoard[col][row - row2]);
+
+                    }
+
+
+                    // Check for rocks ..
+
+                    // Left ..
+
+                    if (col > 0) {
+
+                        for (uint8_t row2 = 0; row2 <= matches; row2++) {
+
+                            if (this->isMarkedPart(gameBoard[col][row - row2]) && (this->gameBoard[col - 1][row - row2] == BoardType::Existing_Rock)) {
+
+                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                                printf("E (%i,%i) %i > ", col-1, row-row2, gameBoard_Frames[col - 1][row - row2]);
+                                #endif
+
+                                --gameBoard_Frames[col - 1][row - row2];
+
+                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                                printf("%i\n ", gameBoard_Frames[col - 1][row - row2]);
+                                #endif
+
+                                if (gameBoard_Frames[col - 1][row - row2] == 0) {
+
+                                    gameBoard[col - 1][row - row2] = BoardType::Marked_Rock;
+                                    launchPointsParticles(ROCK_POINTS, Color::White, scoreCount++);
+
+                                }
+                                
+                            }
+
+                        }
+
+                    }
+
+
+                    // Right ..
+
+                    if (col < BOARD_WIDTH - 1) {
+
+                        for (uint8_t row2 = 0; row2 <= matches; row2++) {
+
+                            if (this->isMarkedPart(gameBoard[col][row - row2]) && (this->gameBoard[col + 1][row - row2] == BoardType::Existing_Rock)) {
+
+                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                                printf("F(%i,%i)  %i > ", col+1, row-row2, gameBoard_Frames[col + 1][row - row2]);
+                                #endif
+
+                                --gameBoard_Frames[col + 1][row - row2];
+
+                                #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                                printf("%i\n ", gameBoard_Frames[col + 1][row - row2]);
+                                #endif
+
+                                if (gameBoard_Frames[col + 1][row - row2] == 0) {
+
+                                    gameBoard[col + 1][row - row2] = BoardType::Marked_Rock;
+                                    launchPointsParticles(ROCK_POINTS, Color::White, scoreCount++);
+
+                                }
+                                
+                            }
+
+                        }
+
+                    }
+
+
+                    // Top ..
+
+                    if (row - matches > 0) {
+
+                        if (this->isMarkedPart(gameBoard[col][row - matches]) && (gameBoard[col][row - matches - 1] == BoardType::Existing_Rock)) {
+
+                            #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                            printf("G (%i,%i) %i > ", col, row-matches-1, gameBoard_Frames[col][row - matches - 1]);
+                            #endif
+
+                            --gameBoard_Frames[col][row - matches - 1];
+
+                            #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                            printf("%i\n ", gameBoard_Frames[col][row - matches - 1]);
+                            #endif
+
+                            if (gameBoard_Frames[col][row - matches - 1] == 0) {
+
+                                gameBoard[col][row - matches - 1] = BoardType::Marked_Rock;
+                                launchPointsParticles(ROCK_POINTS, Color::White, scoreCount++);
+
+                            }
+                            
+                        }
+
+                    }
+
+
+                    // Bottom ..
+
+                    if (row < BOARD_HEIGHT - 1) {
+
+                        if (this->isMarkedPart(gameBoard[col][row]) && (gameBoard[col][row + 1] == BoardType::Existing_Rock)) {
+
+                            #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                            printf("H %(%i,%i) i > ", col, row+1, gameBoard_Frames[col][row + 1]);
+                            #endif
+
+                            --gameBoard_Frames[col][row + 1];
+
+                            #if defined(DEBUG) || defined(DEBUG_ROCKS)
+                            printf("%i\n ", gameBoard_Frames[col][row + 1]);
+                            #endif
+
+                            if (gameBoard_Frames[col][row + 1] == 0) {
+
+                                gameBoard[col][row + 1] = BoardType::Marked_Rock;
+                                launchPointsParticles(ROCK_POINTS, Color::White, scoreCount++);
+
+                            }
+                            
+                        }
+
+                    }
+
+                    break;
+
+                }
+
             }
 
-            if (scoringRowFound) break;
-
         }
 
-    //}
-    
-    #ifdef DEBUG
-    for (uint8_t col = 0; col < BOARD_WIDTH; col++) {
+        if (scoringRowFound) break;
 
-        for (uint8_t row = 0; row < BOARD_HEIGHT; row++) {
+    }
 
-            printf("%i ", (uint8_t)this->gameBoard[col][row]);
+    #ifdef SOUNDS
+    switch (scoreCount) {
 
-        }
+        case 1:
+            this->playSoundEffect(SoundTheme::Bubble_Med);
+            break;
 
-        printf("\n");
+        case 2:
+            this->playSoundEffect(SoundTheme::Bubble_Med2);
+            break;
 
+        default:
+            this->playSoundEffect(SoundTheme::Bubble_Med);
+            break;
+            
     }
     #endif
 
@@ -1211,7 +1174,7 @@ bool Game::moveCycle() {
 
         if (isNewPart(col, row)) {
 
-            if (PC::buttons.pressed(BTN_RIGHT) || PC::buttons.repeat(BTN_RIGHT, 4)) {
+            if (PC::buttons.pressed(BTN_RIGHT) || PC::buttons.repeat(BTN_RIGHT, 8)) {
 
                 if (col < BOARD_WIDTH - 1) {                                 // not at the right edge of the board
 
@@ -1248,12 +1211,6 @@ bool Game::moveCycle() {
                                 if (row >= 1) gameBoard[col + 1][row - 1] = this->convertNewToExisting(gameBoard[col + 1][row - 1]);
                                 if (row >= 2) gameBoard[col + 1][row - 2] = this->convertNewToExisting(gameBoard[col + 1][row - 2]);
 
-                                // if (this->markScoringRows()) {
-
-                                //     this->scoringRowCount = SCORING_ROW_COUNT_SCORING_COMBO;
-                                //     return true;
-
-                                // }
                                 partStopped(col + 1, row);
                                 return true;
 
@@ -1269,13 +1226,6 @@ bool Game::moveCycle() {
                             partLanded(col + 1);
                             return true;
 
-                            // if (this->markScoringRows()) {
-
-                            //     this->scoringRowCount = SCORING_ROW_COUNT_SCORING_COMBO;
-                            //     return true;
-                                
-                            // }
-
                         }
 
                     }
@@ -1284,7 +1234,7 @@ bool Game::moveCycle() {
 
             }
 
-            if (PC::buttons.pressed(BTN_LEFT) || PC::buttons.repeat(BTN_LEFT, 4)) {
+            if (PC::buttons.pressed(BTN_LEFT) || PC::buttons.repeat(BTN_LEFT, 8)) {
 
                 if (col > 0) {                                            // not at the left edge of the board
 
@@ -1321,12 +1271,6 @@ bool Game::moveCycle() {
                                 if (row >= 1) gameBoard[col - 1][row - 1] = this->convertNewToExisting(gameBoard[col - 1][row - 1]);
                                 if (row >= 2) gameBoard[col - 1][row - 2] = this->convertNewToExisting(gameBoard[col - 1][row - 2]);
 
-                                // if (this->markScoringRows()) {
-
-                                //     this->scoringRowCount = SCORING_ROW_COUNT_SCORING_COMBO;
-                                //     return true;
-                                    
-                                // }
                                 partStopped(col - 1, row);
                                 return true;
 
@@ -1341,13 +1285,6 @@ bool Game::moveCycle() {
 
                             partLanded(col - 1);
                             return true;
-
-                            // if (this->markScoringRows()) {
-
-                            //     this->scoringRowCount = SCORING_ROW_COUNT_SCORING_COMBO;
-                            //     return true;
-                                
-                            // }
   
                         }
 

@@ -1636,6 +1636,30 @@
 		},
 		"/distributable/StackShifter.gif": {
 			"sdcard": false
+		},
+		"/My_settings copy.h": {
+			"sdcard": false
+		},
+		"/LICENCE.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_36x36_Icon.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_24x24_Icon.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_03.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_00.h": {
+			"sdcard": false
+		},
+		"/StackShift.bin": {
+			"sdcard": false
+		},
+		"/StackShiftq.bin": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,

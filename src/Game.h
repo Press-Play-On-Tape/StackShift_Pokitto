@@ -76,7 +76,7 @@ class Game {
         void clearRow(uint8_t matchRow, uint8_t row);
         void launchStar();
         void launchParticles(uint8_t col, uint8_t row, ExplosionSize explosionSize);
-        void launchPointsParticles(uint16_t points, Color color);
+        void launchPointsParticles(uint16_t points, Color color, uint8_t delay);
         void launchHighScoreParticles();
         void moveDown();
         bool moveCycle(); // Skip boardCycle

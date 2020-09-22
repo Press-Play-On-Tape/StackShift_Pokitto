@@ -18,6 +18,7 @@ struct Particle {
         uint8_t pSize = 1;
         uint16_t score = 0;
         int16_t boundL, boundR;
+        uint8_t delay = 0;
 
     public:
 
@@ -34,6 +35,7 @@ struct Particle {
         ParticleType getType()                  { return this->type; }
         float getVelX()                         { return this->velx; }
         float getVelY()                         { return this->vely; }
+        uint8_t getDelay()                      { return this->delay; }
 
         void setX(int16_t val)                  { this->x = val; }
         void setY(int16_t val)                  { this->y = val; }
@@ -44,10 +46,19 @@ struct Particle {
         void setType(ParticleType val)          { this->type = val; }
         void setColour(Color val)               { this->colour = val; } 
         void setScore(uint16_t val)             { this->score = val; }
+        void setDelay(uint8_t val)              { this->delay = val; }
 
     public:
 
         void update() {
+
+
+            // burn delay ..
+
+            if (this->delay > 0) {
+                this->delay--;
+                return;
+            }
 
 
             // move your particle based on direction, whatever ..
@@ -138,6 +149,12 @@ struct Particle {
         }
 
         bool render() {
+
+            return (this->counter > 0 && this->delay == 0);
+
+        }
+
+        bool isActive() {
 
             return (this->counter > 0);
 

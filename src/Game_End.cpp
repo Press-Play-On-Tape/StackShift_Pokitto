@@ -46,15 +46,15 @@ void Game::resetGame() {
     //     }
     // }
 
-gameBoard[0][14] = BoardType::Existing_Green;
-gameBoard[1][14] = BoardType::Existing_Green;
+// gameBoard[0][14] = BoardType::Existing_Green;
+// gameBoard[1][14] = BoardType::Existing_Green;
 
 
-    this->launchBlocks[0] = BoardType::New_Green;
-    this->launchBlocks[1] = BoardType::New_Green;
-    this->launchBlocks[2] = BoardType::New_Green;
-    this->launchBlocks[3] = BoardType::New_Green;
-    this->launchBlocks[4] = BoardType::New_Green;
+    // this->launchBlocks[0] = BoardType::New_Green;
+    // this->launchBlocks[1] = BoardType::New_Green;
+    // this->launchBlocks[2] = BoardType::New_Green;
+    // this->launchBlocks[3] = BoardType::New_Green;
+    // this->launchBlocks[4] = BoardType::New_Green;
 
 
 

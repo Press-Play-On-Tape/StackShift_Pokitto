@@ -1,7 +1,7 @@
 #pragma once
 
 #define SOUNDS
-#define DEBUG
+#define _DEBUG
 #define _DEBUG_ROCKS
 
 #define ROCK_POINTS 25
