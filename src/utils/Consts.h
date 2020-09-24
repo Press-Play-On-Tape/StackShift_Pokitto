@@ -46,6 +46,7 @@ enum class SoundTheme : uint8_t {
     Bubble_Med,
     Bubble_Med2,
     Bubble_Long,
+    Chime,
     Unknown
 };
 
@@ -80,6 +81,8 @@ enum class GameState : uint8_t {
     End,
     HighScore_Init,
     HighScore,
+    Pause_Init,
+    Pause
 };
 
 enum class BoardType : uint8_t {

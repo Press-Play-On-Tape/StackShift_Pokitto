@@ -14,73 +14,80 @@ void Game::renderParticles() {
 
         Particle &particle = this->particles[i];
 
-        if (particle.render()) {                                                             // the dot should be rendered
+        if (particle.isActive()) {                                                             // the dot should be rendered
 
             particle.update();
             uint8_t digits[5] = {};
-            Utils::extractDigits(digits, particle.getScore());
 
-            switch (particle.getType()) {
+            if (particle.render()) {
 
-                case ParticleType::Score:
+                switch (particle.getType()) {
 
-                    PD::setFont(fontC64);
-                    PD::setColor(0, 15);
+                    case ParticleType::Score:
 
-                    switch (particle.getScore()) {
+                        PD::setFont(fontC64);
+                        PD::setColor(0, 15);
 
-                        case 0 ... 9:
-                            PD::drawBitmap(particle.getX() - 5, particle.getY() - 4, Images::ScoreBalloons_Sml[static_cast<uint8_t>(particle.getColour())]);
-                            PD::setCursor(particle.getX(), particle.getY());
-                            PD::print(particle.getScore(), 10);
-                            break;
+                        Utils::extractDigits(digits, particle.getScore());
 
-                        case 10 ... 99:
-                            PD::drawBitmap(particle.getX() - 4, particle.getY() - 4, Images::ScoreBalloons_Med[static_cast<uint8_t>(particle.getColour())]);
-                            for (uint8_t j = 2, x2 = particle.getX(); j > 0; --j, x2 += 8) {
-                    
-                                PD::setCursor(x2, particle.getY());
-                                PD::print(digits[j - 1], 14);
-                    
-                            }                            
-                            break;
+                        switch (particle.getScore()) {
 
-                        case 100 ... 999:
+                            case 0 ... 9:
 
-                            PD::drawBitmap(particle.getX() - 3, particle.getY() - 4, Images::ScoreBalloons_Lrg[static_cast<uint8_t>(particle.getColour())]);
-                            for (uint8_t j = 3, x2 = particle.getX(); j > 0; --j, x2 += 8) {
-                    
-                                PD::setCursor(x2, particle.getY());
-                                PD::print(digits[j - 1], 14);
-                    
-                            }                            
-                            break;
+                                PD::drawBitmap(particle.getX() - 5, particle.getY() - 4, Images::ScoreBalloons_Sml[static_cast<uint8_t>(particle.getColour())]);
+                                PD::setCursor(particle.getX(), particle.getY());
+                                PD::print(particle.getScore(), 10);
+                                break;
 
-                    }
+                            case 10 ... 99:
 
-                    break;
-
-                default:
-                    {
-                        int pSize = particle.getSize();
-                        const uint8_t colourCodes[10] = { 11, 3, 8, 14, 9, 10, 6, 7, 13, 14 };
+                                PD::drawBitmap(particle.getX() - 4, particle.getY() - 4, Images::ScoreBalloons_Med[static_cast<uint8_t>(particle.getColour())]);
+                                for (uint8_t j = 2, x2 = particle.getX(); j > 0; --j, x2 += 8) {
                         
-                        PD::setColor(colourCodes[(static_cast<uint8_t>(particle.getColour()) * 2) + (i%2)]);
+                                    PD::setCursor(x2, particle.getY());
+                                    PD::print(digits[j - 1], 14);
+                        
+                                }                            
+                                break;
 
-                        if (pSize == 1) {
+                            case 100 ... 999:
 
-                            PD::drawPixel(particle.getX(), particle.getY(), 1);
-
-                        } 
-                        else {
-
-                            PD::drawRectangle(particle.getX(), particle.getY(), pSize, pSize); //WHITE
+                                PD::drawBitmap(particle.getX() - 3, particle.getY() - 4, Images::ScoreBalloons_Lrg[static_cast<uint8_t>(particle.getColour())]);
+                                for (uint8_t j = 3, x2 = particle.getX(); j > 0; --j, x2 += 8) {
+                        
+                                    PD::setCursor(x2, particle.getY());
+                                    PD::print(digits[j - 1], 14);
+                        
+                                }                            
+                                break;
 
                         }
 
-                    }
+                        break;
 
-                    break;
+                    default:
+                        {
+                            int pSize = particle.getSize();
+                            const uint8_t colourCodes[10] = { 11, 3, 8, 14, 9, 10, 6, 7, 13, 14 };
+                            
+                            PD::setColor(colourCodes[(static_cast<uint8_t>(particle.getColour()) * 2) + (i%2)]);
+
+                            if (pSize == 1) {
+
+                                PD::drawPixel(particle.getX(), particle.getY(), 1);
+
+                            } 
+                            else {
+
+                                PD::drawRectangle(particle.getX(), particle.getY(), pSize, pSize); //WHITE
+
+                            }
+
+                        }
+
+                        break;
+
+                }
 
             }
 
@@ -100,7 +107,7 @@ void Game::launchParticles(uint8_t col, uint8_t row, ExplosionSize explosionSize
 
     for (Particle &particle : this->particles) {
 
-        if (!particle.render()) {
+        if (!particle.isActive()) {
 
             switch (explosionSize) {
 
@@ -160,18 +167,18 @@ void Game::launchParticles(uint8_t col, uint8_t row, ExplosionSize explosionSize
 }
 
 
-void Game::launchPointsParticles(uint8_t col, uint8_t row, uint16_t points, Color color) {
+void Game::launchPointsParticles(uint16_t points, Color color, uint8_t delay) {
 
     currentScore += points;
     uint8_t scoreCount = 90;
 
     const uint8_t size[3] = { 20, 26, 32 };
     const uint8_t counts[3] = { 60, 90, 100 };
-    const uint8_t velY[3] = { 4, 5, 6 };
+    const uint8_t velY[3] = { 3, 5, 6 };
 
     for (Particle &particle : this->particles) {
 
-        if (!particle.render()) {
+        if (!particle.isActive()) {
 
             uint8_t nums = 0;
 
@@ -186,8 +193,9 @@ void Game::launchPointsParticles(uint8_t col, uint8_t row, uint16_t points, Colo
             particle.setCounter(counts[nums]);
             particle.setSize(1);
             particle.setType(ParticleType::Score);
-            particle.setColour(this->getColor(this->gameBoard[col][row]));
+            particle.setColour(color);
             particle.setScore(points);
+            particle.setDelay(delay * 5);
             return;    
 
         }
@@ -204,7 +212,7 @@ void Game::launchHighScoreParticles() {
 
     for (Particle &particle : this->particles) {
 
-        if (!particle.render()) {
+        if (!particle.isActive()) {
 
             particle.setX(random(60, 160));
             particle.setY(random(80, 140));

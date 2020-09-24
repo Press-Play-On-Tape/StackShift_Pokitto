@@ -63,6 +63,8 @@ class Game {
         void doGameEnd();
         void doHighScore_Init();
         void doHighScore();
+        void doPause_Init();
+        void doPause();
 
 
         // Game play ..
@@ -76,7 +78,7 @@ class Game {
         void clearRow(uint8_t matchRow, uint8_t row);
         void launchStar();
         void launchParticles(uint8_t col, uint8_t row, ExplosionSize explosionSize);
-        void launchPointsParticles(uint8_t col, uint8_t row, uint16_t points, Color color);
+        void launchPointsParticles(uint16_t points, Color color, uint8_t delay);
         void launchHighScoreParticles();
         void moveDown();
         bool moveCycle(); // Skip boardCycle
@@ -90,16 +92,17 @@ class Game {
 
         // Render game, etc ..
 
-        void drawScore(bool renderHeadings);
+        void drawScore(bool renderHeadings, bool grey);
         void drawFrame();
         void drawBoard();
         void drawNextColumn();
         void drawDropped();
+        void drawTrack();
 
 
         // Utilities ..
 
-        void playTheme();
+        void playTheme(uint8_t trackNumber);
         void playSoundEffect(SoundTheme theme);
         void findMovingPart(uint8_t &col, uint8_t &row);
         bool isExistingPart(uint8_t col, uint8_t row);
@@ -112,6 +115,7 @@ class Game {
         bool isRockPart(BoardType boardType);
         BoardType convertNewToExisting(BoardType boardType);
         BoardType convertToMarkedBlock(BoardType boardType);
+        BoardType convertAnyToExisting(BoardType boardType);
         Color getColor(BoardType boardType);
         BoardType getRandomBoardType(Level level, uint8_t rock);
 

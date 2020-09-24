@@ -191,6 +191,30 @@ BoardType Game::convertNewToExisting(BoardType boardType) {
 }
 
 
+
+// ------------------------------------------------------------
+//  Convert any piece to an existing piece
+//
+BoardType Game::convertAnyToExisting(BoardType boardType) {
+
+    switch (boardType) {
+
+        case BoardType::Marked_First ... BoardType::Marked_Last:
+
+            return static_cast<BoardType>(static_cast<uint8_t>(boardType) - 8);
+
+        case BoardType::New_First ... BoardType::New_Last:
+
+            return static_cast<BoardType>(static_cast<uint8_t>(boardType) - 4);
+
+        default:
+
+            return boardType;
+            
+    }
+
+}
+
 // ------------------------------------------------------------
 //  Convert a piece to an 'clear' block
 //
@@ -198,13 +222,17 @@ BoardType Game::convertToMarkedBlock(BoardType boardType) {
 
     switch (boardType) {
 
+        case BoardType::Existing_First ... BoardType::Existing_Last:
+
+            return static_cast<BoardType>(static_cast<uint8_t>(boardType) + 8);
+
         case BoardType::New_First ... BoardType::New_Last:
 
             return static_cast<BoardType>(static_cast<uint8_t>(boardType) + 4);
 
         default:
 
-            return static_cast<BoardType>(static_cast<uint8_t>(boardType) + 8);
+            return boardType;
             
     }
 
@@ -400,8 +428,9 @@ Color Game::getColor(BoardType boardType) {
 
 void Game::playSoundEffect(SoundTheme theme) {
 
-    char sounds[4][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
-                           "music/Stack_03.raw", "music/Stack_04.raw" };
+    char sounds[5][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
+                           "music/Stack_03.raw", "music/Stack_04.raw",
+                           "music/Stack_08.raw" };
 
     switch (this->cookie->sfx) {
 
@@ -424,16 +453,16 @@ void Game::playSoundEffect(SoundTheme theme) {
 }
 
 
-void Game::playTheme() {
+void Game::playTheme(uint8_t trackNumber) {
 
-    char themes[1][19] = { "music/Stack_05.raw" };
+    char themes[3][19] = { "music/Stack_05.raw", "music/Stack_06.raw", "music/Stack_07.raw" };
 
     switch (this->cookie->sfx) {
 
         case SoundEffects::Music:
         case SoundEffects::Both:
 
-            if (mainThemeFile.openRO(themes[0])) {
+            if (mainThemeFile.openRO(themes[trackNumber])) {
                 auto& music = Audio::play<0>(mainThemeFile);
                 music.setLoop(true);
             }

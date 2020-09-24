@@ -15,6 +15,7 @@ class GameCookie : public Pokitto::Cookie {
 		uint32_t lastScore = 0;
 		uint32_t lastScoreIndex = 0;
 		SoundEffects sfx = SoundEffects::Both;
+		uint8_t track = 0;
 
 	public:
 
@@ -51,6 +52,7 @@ class GameCookie : public Pokitto::Cookie {
 
 			this->lastScore = 0;
 			this->lastScoreIndex = 0;
+			this->track = 0;
 			this->saveCookie();
 
 		}

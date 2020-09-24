@@ -46,9 +46,13 @@ void Game::resetGame() {
     //     }
     // }
 
-    // this->launchBlocks[0] = BoardType::New_Yellow;
-    // this->launchBlocks[1] = BoardType::New_Yellow;
-    // this->launchBlocks[2] = BoardType::New_Yellow;
+// gameBoard[0][14] = BoardType::Existing_Green;
+// gameBoard[1][14] = BoardType::Existing_Green;
+
+
+    // this->launchBlocks[0] = BoardType::New_Green;
+    // this->launchBlocks[1] = BoardType::New_Green;
+    // this->launchBlocks[2] = BoardType::New_Green;
     // this->launchBlocks[3] = BoardType::New_Green;
     // this->launchBlocks[4] = BoardType::New_Green;
 
@@ -59,7 +63,7 @@ void Game::resetGame() {
 
 void Game::doGameEnd() {
 
-    drawScore(false);
+    drawScore(false, false);
     drawFrame();
     drawBoard();
 

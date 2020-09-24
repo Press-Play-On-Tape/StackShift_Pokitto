@@ -75,7 +75,7 @@ void Game::loop(){
 
         case GameState::Play_Init:
             this->resetGame();
-            this->playTheme();
+            this->playTheme(this->cookie->track);
             [[fallthrough]]
 
         case GameState::Play:
@@ -139,7 +139,7 @@ void Game::loop(){
 
             if (!this->moveCycle()) {
 
-                if (cycleCount >= gameSpeed || ((PC::buttons.pressed(BTN_DOWN) || PC::buttons.repeat(BTN_DOWN, 1) && cycleCount >= gameSpeed / 2))) {
+                if (cycleCount >= gameSpeed || ((PC::buttons.pressed(BTN_DOWN) || PC::buttons.repeat(BTN_DOWN, 1) && cycleCount >= 2))) {
                     this->boardCycle();
                     cycleCount = 0;
                 } 
@@ -149,7 +149,8 @@ void Game::loop(){
 
             }
 
-            this->drawScore(true);
+            this->drawScore(true, false);
+            this->drawTrack();
             this->drawFrame();
             this->drawNextColumn();
             this->drawBoard();
@@ -167,6 +168,14 @@ void Game::loop(){
 
         case GameState::HighScore:
             this->doHighScore();
+            break;
+
+        case GameState::Pause_Init:
+            this->doPause_Init();
+            break;
+
+        case GameState::Pause:
+            this->doPause();
             break;
 
     }

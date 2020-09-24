@@ -1636,6 +1636,237 @@
 		},
 		"/distributable/StackShifter.gif": {
 			"sdcard": false
+		},
+		"/My_settings copy.h": {
+			"sdcard": false
+		},
+		"/LICENCE.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_36x36_Icon.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_24x24_Icon.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_03.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_00.h": {
+			"sdcard": false
+		},
+		"/StackShift.bin": {
+			"sdcard": false
+		},
+		"/StackShiftq.bin": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.eeprom": {
+			"sdcard": false
+		},
+		"/src/images/tapes": {
+			"sdcard": false
+		},
+		"/src/images/tapes/blue_tape.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Pause.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_00.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_00 copy.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_00 copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_02.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_01.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_00.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_00 copy.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_00 copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_02.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_01.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_00.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_02.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_02 copy.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_02 copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_01.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Tapes.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Pause.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_00.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_02.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_02.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_02.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_01.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_00.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_01.h": {
+			"sdcard": false
+		},
+		"/src/Game_HighScore copy.cpp": {
+			"sdcard": false
+		},
+		"/src/Game_Pause.cpp": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_01.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_00.h": {
+			"sdcard": false
+		},
+		"/src/images/shapes/Shapes.h": {
+			"sdcard": false
+		},
+		"/src/music/StackShift_Track3.mp3": {
+			"sdcard": false
+		},
+		"/src/music/StackShift_Track2.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/StackShift_Track2.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/StackShift_Track3.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/Stack_06.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/Stack_07.mp3": {
+			"sdcard": false
+		},
+		"/music/Stack_06.raw": {
+			"sdcard": false
+		},
+		"/music/Stack_07.raw": {
+			"sdcard": false
+		},
+		"/src/images/game/Easy copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Easy_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Hard copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Hard_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Easy_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/game/Hard_Grey.h": {
+			"sdcard": false
+		},
+		"/StacKShift.zip": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.1.gif": {
+			"sdcard": false
+		},
+		"/src/images/game/HiScore copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/HiScore_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Score copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Score_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/HiScore_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/game/Score_Grey.h": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.2.png": {
+			"sdcard": false
+		},
+		"/src/images/game/PausePlay.png": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.2.h": {
+			"sdcard": false
+		},
+		"/src/images/game/PausePlay.h": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.1.png": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.1.h": {
+			"sdcard": false
+		},
+		"/music/Stack_08.raw": {
+			"sdcard": false
+		},
+		"/music_Orig/Pause_Sound.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/Stack_08.mp3": {
+			"sdcard": false
+		},
+		"/music/Stack_080.raw": {
+			"sdcard": false
+		},
+		"/distributable/StackShift(1).pop": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.2.gif": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,
