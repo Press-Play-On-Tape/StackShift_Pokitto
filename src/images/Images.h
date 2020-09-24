@@ -22,6 +22,12 @@ namespace Images {
     #include "game/Easy.h"
     #include "game/Hard.h"
 
+    #include "game/Score_Grey.h"
+    #include "game/HiScore_Grey.h"
+    #include "game/Easy_Grey.h"
+    #include "game/Hard_Grey.h"
+    #include "game/PausePlay.h"
+
     const uint8_t * const Title_Anim[4] = { 
         Title_00, Title_01, Title_02, Title_03
     };

@@ -1166,6 +1166,7 @@ bool Game::moveCycle() {
     }
 
     if (PC::buttons.pressed(BTN_C)) {
+        this->playSoundEffect(SoundTheme::Chime);
         this->gameState = GameState::Pause_Init;
     }
 

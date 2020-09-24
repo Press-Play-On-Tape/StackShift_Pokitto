@@ -51,20 +51,20 @@ void Game::doPause() {
 
                 this->cookie->sfx = SoundEffects::Music;
                 xCass = 86;
-                yCass = 80 + (this->cursor * 12);
+                yCass = 64 + (this->cursor * 12);
 
             }
             else if (this->cookie->sfx == SoundEffects::SFX) {
 
                 this->cookie->sfx = SoundEffects::Both;
                 xCass = 86;
-                yCass = 80 + (this->cursor * 12);
+                yCass = 64 + (this->cursor * 12);
 
             }
             else if (this->cookie->track != this->cursor) {
 
                 xCass = 86;
-                yCass = 80 + (this->cursor * 12);
+                yCass = 64 + (this->cursor * 12);
 
             }
 
@@ -75,16 +75,21 @@ void Game::doPause() {
 
     if (xCass > 0) {
 
-        if (xCass < 164) {
+        if (xCass <= 162) {
             xCass = xCass + 4;
         }
-        // else if (xCass < 166) {
-        //     xCass = xCass + 2;
-        // }
+        else if (xCass <= 164) {
+            xCass = xCass + 2;
+        }
 
-        yCass = yCass - 4;
+        if (yCass > 6) {
+            yCass = yCass - 4;
+        }
+        else if (yCass >= 4) {
+            yCass = yCass - 2;
+        }
 
-        if (yCass <= 0) {
+        if (yCass == 2 && xCass == 166) {
             
             xCass = 0;
 
@@ -100,11 +105,11 @@ void Game::doPause() {
     // ----------------------------------------------------------------------------
     //  Render the state .. 
 
-    this->drawScore(true);
+    this->drawScore(true, true);
     this->drawFrame();
     this->drawTrack();
 
-    PD::drawBitmap(90, 34, Images::Pause);
+    PD::drawBitmap(95, 46, Images::PausePlay);
 
 
     for (uint8_t i = 0; i < 3; i++) {
@@ -116,7 +121,7 @@ void Game::doPause() {
         }
         else {
 
-            PD::drawBitmap(80 + (this->cursor == i ? 6: 0), 80 + (i * 12), Images::Tapes[i][0]);
+            PD::drawBitmap(80 + (this->cursor == i ? 6: 0), 64 + (i * 12), Images::Tapes[i][0]);
 
         }
 

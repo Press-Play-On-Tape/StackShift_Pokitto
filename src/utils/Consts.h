@@ -46,6 +46,7 @@ enum class SoundTheme : uint8_t {
     Bubble_Med,
     Bubble_Med2,
     Bubble_Long,
+    Chime,
     Unknown
 };
 

@@ -1813,6 +1813,60 @@
 		},
 		"/StackShift_Pokitto.bin.1.gif": {
 			"sdcard": false
+		},
+		"/src/images/game/HiScore copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/HiScore_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Score copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Score_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/HiScore_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/game/Score_Grey.h": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.2.png": {
+			"sdcard": false
+		},
+		"/src/images/game/PausePlay.png": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.2.h": {
+			"sdcard": false
+		},
+		"/src/images/game/PausePlay.h": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.1.png": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.1.h": {
+			"sdcard": false
+		},
+		"/music/Stack_08.raw": {
+			"sdcard": false
+		},
+		"/music_Orig/Pause_Sound.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/Stack_08.mp3": {
+			"sdcard": false
+		},
+		"/music/Stack_080.raw": {
+			"sdcard": false
+		},
+		"/distributable/StackShift(1).pop": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.2.gif": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,

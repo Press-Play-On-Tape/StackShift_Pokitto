@@ -63,7 +63,7 @@ void Game::resetGame() {
 
 void Game::doGameEnd() {
 
-    drawScore(false);
+    drawScore(false, false);
     drawFrame();
     drawBoard();
 

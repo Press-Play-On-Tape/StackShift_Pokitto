@@ -92,7 +92,7 @@ class Game {
 
         // Render game, etc ..
 
-        void drawScore(bool renderHeadings);
+        void drawScore(bool renderHeadings, bool grey);
         void drawFrame();
         void drawBoard();
         void drawNextColumn();

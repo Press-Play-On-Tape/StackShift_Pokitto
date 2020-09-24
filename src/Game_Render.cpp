@@ -8,7 +8,7 @@ using PC = Pokitto::Core;
 using PD = Pokitto::Display;
 
 
-void Game::drawScore(bool renderHeadings) {
+void Game::drawScore(bool renderHeadings, bool grey) {
 
     // PD::setColor(5, 0);
     // PD::setCursor(2, 2);
@@ -20,19 +20,36 @@ void Game::drawScore(bool renderHeadings) {
     if (renderHeadings) {
 
         if (this->level == Level::Easy) {
-            PD::drawBitmap(17, 34, Images::Easy);
+            if (grey) {
+                PD::drawBitmap(17, 34, Images::Easy_Grey);
+            }
+            else {
+                PD::drawBitmap(17, 34, Images::Easy);
+            }
+
         }
         else {
-            PD::drawBitmap(17, 34, Images::Hard);
+            if (grey) {
+                PD::drawBitmap(17, 34, Images::Hard_Grey);
+            }
+            else {
+                PD::drawBitmap(17, 34, Images::Hard);
+            }
         }
 
-        PD::drawBitmap(13, 73, Images::Score);
-        PD::drawBitmap(151, 73, Images::HiScore);
+        if (grey) {
+            PD::drawBitmap(13, 73, Images::Score_Grey);
+            PD::drawBitmap(151, 73, Images::HiScore_Grey);
+        }
+        else {
+            PD::drawBitmap(13, 73, Images::Score);
+            PD::drawBitmap(151, 73, Images::HiScore);
+        }
 
     }
 
 
-    PD::setColor(7, 0);
+    PD::setColor(grey ? 5 : 7, 0);
 
     if (highScore > currentScore) {
 

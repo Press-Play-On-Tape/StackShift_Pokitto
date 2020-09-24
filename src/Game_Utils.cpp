@@ -428,8 +428,9 @@ Color Game::getColor(BoardType boardType) {
 
 void Game::playSoundEffect(SoundTheme theme) {
 
-    char sounds[4][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
-                           "music/Stack_03.raw", "music/Stack_04.raw" };
+    char sounds[5][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
+                           "music/Stack_03.raw", "music/Stack_04.raw",
+                           "music/Stack_08.raw" };
 
     switch (this->cookie->sfx) {
 

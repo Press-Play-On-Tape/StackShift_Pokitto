@@ -149,7 +149,7 @@ void Game::loop(){
 
             }
 
-            this->drawScore(true);
+            this->drawScore(true, false);
             this->drawTrack();
             this->drawFrame();
             this->drawNextColumn();
