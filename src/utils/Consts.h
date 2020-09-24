@@ -80,6 +80,8 @@ enum class GameState : uint8_t {
     End,
     HighScore_Init,
     HighScore,
+    Pause_Init,
+    Pause
 };
 
 enum class BoardType : uint8_t {

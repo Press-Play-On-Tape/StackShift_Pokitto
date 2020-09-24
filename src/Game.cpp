@@ -75,7 +75,7 @@ void Game::loop(){
 
         case GameState::Play_Init:
             this->resetGame();
-            this->playTheme();
+            this->playTheme(this->cookie->track);
             [[fallthrough]]
 
         case GameState::Play:
@@ -150,6 +150,7 @@ void Game::loop(){
             }
 
             this->drawScore(true);
+            this->drawTrack();
             this->drawFrame();
             this->drawNextColumn();
             this->drawBoard();
@@ -167,6 +168,14 @@ void Game::loop(){
 
         case GameState::HighScore:
             this->doHighScore();
+            break;
+
+        case GameState::Pause_Init:
+            this->doPause_Init();
+            break;
+
+        case GameState::Pause:
+            this->doPause();
             break;
 
     }

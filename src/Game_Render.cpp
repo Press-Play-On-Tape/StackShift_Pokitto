@@ -134,6 +134,22 @@ void Game::drawNextColumn() {
 
 }
 
+void Game::drawTrack() {
+
+    switch (this->cookie->sfx) {
+
+        case SoundEffects::Both:
+        case SoundEffects::Music:
+
+            PD::drawBitmap(166, 2, Images::Tapes[this->cookie->track][(PC::frameCount % 48) / 16]);
+            break;
+
+        default: break;
+
+    }
+
+}
+
 
 void Game::drawBoard() {
 

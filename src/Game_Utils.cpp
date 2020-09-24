@@ -452,16 +452,16 @@ void Game::playSoundEffect(SoundTheme theme) {
 }
 
 
-void Game::playTheme() {
+void Game::playTheme(uint8_t trackNumber) {
 
-    char themes[1][19] = { "music/Stack_05.raw" };
+    char themes[3][19] = { "music/Stack_05.raw", "music/Stack_06.raw", "music/Stack_07.raw" };
 
     switch (this->cookie->sfx) {
 
         case SoundEffects::Music:
         case SoundEffects::Both:
 
-            if (mainThemeFile.openRO(themes[0])) {
+            if (mainThemeFile.openRO(themes[trackNumber])) {
                 auto& music = Audio::play<0>(mainThemeFile);
                 music.setLoop(true);
             }

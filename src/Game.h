@@ -63,6 +63,8 @@ class Game {
         void doGameEnd();
         void doHighScore_Init();
         void doHighScore();
+        void doPause_Init();
+        void doPause();
 
 
         // Game play ..
@@ -95,11 +97,12 @@ class Game {
         void drawBoard();
         void drawNextColumn();
         void drawDropped();
+        void drawTrack();
 
 
         // Utilities ..
 
-        void playTheme();
+        void playTheme(uint8_t trackNumber);
         void playSoundEffect(SoundTheme theme);
         void findMovingPart(uint8_t &col, uint8_t &row);
         bool isExistingPart(uint8_t col, uint8_t row);

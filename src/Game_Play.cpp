@@ -1165,6 +1165,10 @@ bool Game::moveCycle() {
         moveDown();
     }
 
+    if (PC::buttons.pressed(BTN_C)) {
+        this->gameState = GameState::Pause_Init;
+    }
+
     uint8_t col = NO_BLOCK_FOUND;
     uint8_t row = NO_BLOCK_FOUND;
     
