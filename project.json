@@ -1789,6 +1789,30 @@
 		},
 		"/music/Stack_07.raw": {
 			"sdcard": false
+		},
+		"/src/images/game/Easy copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Easy_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Hard copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Hard_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Easy_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/game/Hard_Grey.h": {
+			"sdcard": false
+		},
+		"/StacKShift.zip": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.1.gif": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,
