@@ -1867,6 +1867,51 @@
 		},
 		"/StackShift_Pokitto.bin.2.gif": {
 			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_Shadow.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_Shadow.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_Shadow.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/BlueTape_Shadow.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/GreenTape_Shadow.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/RedTape_Shadow.h": {
+			"sdcard": false
+		},
+		"/src/StackShift_Oval.png": {
+			"sdcard": false
+		},
+		"/src/StackShift_Oval.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/StackShift_BGEffect1.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/ArrowLeft.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/ArrowLeft copy.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/ArrowRight.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/ArrowLeft.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/ArrowRight.h": {
+			"sdcard": false
+		},
+		"/src/utils/Drill.txt": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,
