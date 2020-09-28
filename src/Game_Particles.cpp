@@ -70,7 +70,19 @@ void Game::renderParticles() {
                         break;
 
                     case ParticleType::ClearStar:
-                        PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_ClearStar);
+
+                        switch (particle.getCounter()) {
+
+                            case 6 ... 100:
+                                PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_ClearStar[0]);
+                                break;
+
+                            case 0 ... 4:
+                                PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_ClearStar[5 - particle.getCounter()]);
+                                break;
+
+                        }
+
                         break;
 
                     default:
@@ -226,11 +238,11 @@ void Game::launchClearParticles(uint16_t points, Color color, uint8_t delay) {
             switch (launched) {
 
                 case 1 ... 30:
-                    particle.setX(110 - 10);
-                    particle.setY(88 - 9);
-                    particle.setVelX(random(2, 6) * (random(0, 2) == 0 ? -1 : 1));
-                    particle.setVelY(random(2, 6) * (random(0, 2) == 0 ? -1 : 1));
-                    particle.setCounter(75);
+                    particle.setX(random(60, 150));
+                    particle.setY(178);
+                    particle.setVelX(random(-7, 8));
+                    particle.setVelY(random(3, 9));                    
+                    particle.setCounter(100);
                     particle.setSize(1);
                     particle.setType(ParticleType::ClearStar);
                     particle.setColour(color);
@@ -261,22 +273,22 @@ void Game::launchClearParticles(uint16_t points, Color color, uint8_t delay) {
     }
 
 
-    // Make sure sign is always available ..
+    // // Make sure sign is always available ..
 
-    Particle &particle = this->particles[PARTICLE_MAX - 1];
-    particle.setX(110 - (118 / 2));
-    particle.setY(88 - (44 / 2));
-    particle.setVelX(0);
-    particle.setVelY(6);
-    particle.setCounter(75);
-    particle.setSize(1);
-    particle.setType(ParticleType::Clear);
-    particle.setColour(color);
-    particle.setScore(points);
-    particle.setDelay(0);
+    // Particle &particle = this->particles[PARTICLE_MAX - 1];
+    // particle.setX(110 - (118 / 2));
+    // particle.setY(88 - (44 / 2));
+    // particle.setVelX(0);
+    // particle.setVelY(6);
+    // particle.setCounter(75);
+    // particle.setSize(1);
+    // particle.setType(ParticleType::Clear);
+    // particle.setColour(color);
+    // particle.setScore(points);
+    // particle.setDelay(0);
 
-    this->shake.explosionSize = ExplosionSize::Large;
-    this->shake.count = 10;
+    // this->shake.explosionSize = ExplosionSize::Large;
+    // this->shake.count = 10;
 
 }
 

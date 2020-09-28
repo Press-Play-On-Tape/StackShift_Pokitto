@@ -61,23 +61,23 @@ struct Particle {
             }
 
 
-            // Return early if 'Clear' particle type ..
+            // // Return early if 'Clear' particle type ..
 
-            if (this->type == ParticleType::Clear) {
+            // if (this->type == ParticleType::Clear) {
 
-                if (this->counter > 0) this->counter--;
-                return;
+            //     if (this->counter > 0) this->counter--;
+            //     return;
 
-            }
+            // }
 
-            if (this->type == ParticleType::ClearStar) {
+            // if (this->type == ParticleType::ClearStar) {
 
-                if (this->counter > 0) this->counter--;
-                this->x = this->x + this->velx;
-                this->y = this->y + this->vely;
-                return;
+            //     if (this->counter > 0) this->counter--;
+            //     this->x = this->x + this->velx;
+            //     this->y = this->y + this->vely;
+            //     return;
 
-            }
+            // }
 
 
             // move your particle based on direction, whatever ..
@@ -88,6 +88,7 @@ struct Particle {
             switch (this->type) {
 
                 case ParticleType::Zero:
+                case ParticleType::ClearStar:
                     this->boundL = 0;
                     this->boundR = 220;
                     break;
@@ -120,6 +121,10 @@ struct Particle {
                 this->x = this->boundL;
                 this->velx = -this->velx;
             }
+if (this->type == ParticleType::ClearStar) {
+    printf("y %i, ", this->y);
+}
+else {
 
             if (this->y > (BOARD_HEIGHT*PART_SIZE) + 4) { // above (below) board height - bottom of screen
 
@@ -137,8 +142,8 @@ struct Particle {
                 }
 
             }
-
-            if (this->type != ParticleType::Score) {
+}
+            if (this->type != ParticleType::Score && this->type != ParticleType::ClearStar) {
                 if (this->y < 0) { // below (above) board - top of screen
                     if (this->vely > rThresh) {
                         this->vely = -this->vely * rThresh;
@@ -148,7 +153,11 @@ struct Particle {
                     }
                 }           
             }
-
+if (this->type == ParticleType::ClearStar) {
+    printf("y, vely");
+    Utils::printffloat(this->vely);
+    printf("\n");
+}
             this->x += this->velx;
             this->y -= this->vely;
 

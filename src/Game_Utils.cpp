@@ -428,6 +428,8 @@ Color Game::getColor(BoardType boardType) {
 
 void Game::playSoundEffect(SoundTheme theme) {
 
+    #ifdef SOUNDS
+
     char sounds[6][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
                            "music/Stack_03.raw", "music/Stack_04.raw",
                            "music/Stack_08.raw", "music/Stack_09.raw" };
@@ -468,10 +470,14 @@ void Game::playSoundEffect(SoundTheme theme) {
         
     }
 
+    #endif
+
 }
 
 
 void Game::playTheme(uint8_t trackNumber) {
+
+    #ifdef SOUNDS
 
     char themes[3][19] = { "music/Stack_05.raw", "music/Stack_06.raw", "music/Stack_07.raw" };
 
@@ -490,6 +496,8 @@ void Game::playTheme(uint8_t trackNumber) {
         default: break;
 
     }
+
+    #endif
 
 }
 
