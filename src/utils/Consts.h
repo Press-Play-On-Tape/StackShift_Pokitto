@@ -11,7 +11,7 @@
 #define PART_SIZE 11
 #define BOARD_X_OFFSET 74
 #define BOARD_Y_OFFSET 2
-#define PARTICLE_MAX 60
+#define PARTICLE_MAX 200
 #define numberOfBadWords 10
 #define wordBufferLength 10
 
@@ -47,6 +47,7 @@ enum class SoundTheme : uint8_t {
     Bubble_Med2,
     Bubble_Long,
     Chime,
+    Awesome,
     Unknown
 };
 
@@ -71,6 +72,8 @@ enum class ParticleType : uint8_t {
     One,
     Two,
     Score,
+    Clear,
+    ClearStar,
 };
 
 enum class GameState : uint8_t {

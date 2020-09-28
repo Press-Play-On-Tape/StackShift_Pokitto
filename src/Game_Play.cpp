@@ -817,6 +817,27 @@ void Game::clearMarkedBlocks() {
 
     }
 
+
+    // Clear the deck>
+
+    if (this->currentScore > 100) {
+
+        for (uint8_t col = 0; col < BOARD_WIDTH; col++) {
+
+            if (gameBoard[col][BOARD_HEIGHT - 1] != BoardType::None) return;
+
+        }
+
+    }
+    else {
+
+//        return;  //SJH
+
+    }
+
+    launchClearParticles(500, Color::White, 0);
+    this->playSoundEffect(SoundTheme::Awesome);
+
 }
 
 

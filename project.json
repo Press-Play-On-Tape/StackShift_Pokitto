@@ -1912,6 +1912,135 @@
 		},
 		"/src/utils/Drill.txt": {
 			"sdcard": false
+		},
+		"/Wave_Top.png": {
+			"sdcard": false
+		},
+		"/Wave_Bot.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_00.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_00 copy.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_00 copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_02.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_01.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top copy.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top copy 2.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top copy 3.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_00.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_01.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_02.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_00.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_01.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_02.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_01.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_02.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_00.h": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Sml_Tellow.png": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.3.png": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.4.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_02 copy.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_03.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_02 copy.png": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_03.png": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.3.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Top_03.h": {
+			"sdcard": false
+		},
+		"/src/images/Wave_Bot_03.h": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.4.h": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Lrg_White copy.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Clear_White.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Clear_White.h": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_ClearStar_White.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_ClearStar_White.h": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_ClearStar.h": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Clear.h": {
+			"sdcard": false
+		},
+		"/music/Stack_09.raw": {
+			"sdcard": true
+		},
+		"/ShapeShift.zip": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,

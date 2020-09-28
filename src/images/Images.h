@@ -28,8 +28,26 @@ namespace Images {
     #include "game/Hard_Grey.h"
     #include "game/PausePlay.h"
 
+    #include "Wave_Top_00.h"
+    #include "Wave_Top_01.h"
+    #include "Wave_Top_02.h"
+    #include "Wave_Top_03.h"
+
+    #include "Wave_Bot_00.h"
+    #include "Wave_Bot_01.h"
+    #include "Wave_Bot_02.h"
+    #include "Wave_Bot_03.h"
+
     const uint8_t * const Title_Anim[4] = { 
         Title_00, Title_01, Title_02, Title_03
+    };
+
+    const uint8_t * const Wave_Top[4] = { 
+        Wave_Top_00, Wave_Top_01, Wave_Top_02, Wave_Top_03
+    };
+
+    const uint8_t * const Wave_Bot[4] = { 
+        Wave_Bot_00, Wave_Bot_01, Wave_Bot_02, Wave_Bot_03
     };
 
 };

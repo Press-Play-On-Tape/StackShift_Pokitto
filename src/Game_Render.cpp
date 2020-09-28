@@ -10,40 +10,33 @@ using PD = Pokitto::Display;
 
 void Game::drawScore(bool renderHeadings, bool grey) {
 
-    // PD::setColor(5, 0);
-    // PD::setCursor(2, 2);
-    // PD::print("HI");
-    // PD::setCursor(2, 14);
-    // PD::print("SC");
-    // PD::setCursor(6, 26);
-
     if (renderHeadings) {
 
         if (this->level == Level::Easy) {
             if (grey) {
-                PD::drawBitmap(17, 34, Images::Easy_Grey);
+                PD::drawBitmap(17, 44, Images::Easy_Grey);
             }
             else {
-                PD::drawBitmap(17, 34, Images::Easy);
+                PD::drawBitmap(17, 44, Images::Easy);
             }
 
         }
         else {
             if (grey) {
-                PD::drawBitmap(17, 34, Images::Hard_Grey);
+                PD::drawBitmap(17, 44, Images::Hard_Grey);
             }
             else {
-                PD::drawBitmap(17, 34, Images::Hard);
+                PD::drawBitmap(17, 44, Images::Hard);
             }
         }
 
         if (grey) {
-            PD::drawBitmap(13, 73, Images::Score_Grey);
-            PD::drawBitmap(151, 73, Images::HiScore_Grey);
+            PD::drawBitmap(13, 83, Images::Score_Grey);
+            PD::drawBitmap(151, 83, Images::HiScore_Grey);
         }
         else {
-            PD::drawBitmap(13, 73, Images::Score);
-            PD::drawBitmap(151, 73, Images::HiScore);
+            PD::drawBitmap(13, 83, Images::Score);
+            PD::drawBitmap(151, 83, Images::HiScore);
         }
 
     }
@@ -59,7 +52,7 @@ void Game::drawScore(bool renderHeadings, bool grey) {
 
         for (uint8_t j = 5, x2 = 162; j > 0; --j, x2 += 8) {
 
-            PD::setCursor(x2, 112);
+            PD::setCursor(x2, 122);
             PD::print(digits[j - 1], 14);
 
         }
@@ -68,7 +61,7 @@ void Game::drawScore(bool renderHeadings, bool grey) {
 
         for (uint8_t j = 5, x2 = 14; j > 0; --j, x2 += 8) {
 
-            PD::setCursor(x2, 112);
+            PD::setCursor(x2, 122);
             PD::print(digits[j - 1], 10);
 
         }
@@ -85,14 +78,14 @@ void Game::drawScore(bool renderHeadings, bool grey) {
 
             for (uint8_t j = 5, x2 = 162; j > 0; --j, x2 += 8) {
 
-                PD::setCursor(x2, 112);
+                PD::setCursor(x2, 122);
                 PD::print(digits[j - 1], 14);
 
             }
 
             for (uint8_t j = 5, x2 = 14; j > 0; --j, x2 += 8) {
 
-                PD::setCursor(x2, 112);
+                PD::setCursor(x2, 122);
                 PD::print(digits[j - 1], 10);
 
             }   
@@ -103,18 +96,40 @@ void Game::drawScore(bool renderHeadings, bool grey) {
 
 }
 
+int16_t xPos_Top = 0;
+int16_t xPos_Bot = 0;
 
 void Game::drawFrame() {
 
-    uint8_t color = ((this->currentScore / 512) % 8) + 1;
+    uint8_t color = ((this->currentScore / 512) % 4) + 1;
 
-    PD::drawBitmap(0, 176 -  28, Images::Background);
-    PD::setColor(color, 0);
+    for (int16_t x = 0; x < 3; x++) {
+
+        PD::drawBitmap(xPos_Top + (x * 204), 0, Images::Wave_Top[color - 1]);
+        PD::drawBitmap((xPos_Bot - (x * 204)), 154, Images::Wave_Bot[color - 1]);
+
+    } 
+
+    xPos_Top = xPos_Top - 4;
+    if (xPos_Top <= -204) xPos_Top = 0;
+    xPos_Bot = xPos_Bot + 4;
+    if (xPos_Bot >= 220) xPos_Bot = 16;
+
+//    PD::drawBitmap(0, 176 -  28, Images::Background);
+    
 
     int16_t xLeft = BOARD_X_OFFSET + this->shake.xOffset;
     int16_t yTop = this->shake.yOffset + BOARD_Y_OFFSET;
     uint8_t width = (BOARD_WIDTH * PART_SIZE) + 4;
     uint8_t height = (BOARD_HEIGHT * PART_SIZE) + 4;
+
+    PD::setColor(0, 0);
+
+    PD::fillRect(xLeft - 1, yTop - 1, width + 22 ,26);
+    PD::fillRect(xLeft - 1, yTop + 148, width + 3 , 22);
+
+
+    PD::setColor(color, 0);
 
     PD::drawLine(xLeft + 1, yTop, xLeft + width - 1, yTop); //Top
     PD::drawLine(xLeft + 1, yTop + height, xLeft + width - 1, yTop + height); //Bottom

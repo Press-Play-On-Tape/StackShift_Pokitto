@@ -428,20 +428,38 @@ Color Game::getColor(BoardType boardType) {
 
 void Game::playSoundEffect(SoundTheme theme) {
 
-    char sounds[5][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
+    char sounds[6][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
                            "music/Stack_03.raw", "music/Stack_04.raw",
-                           "music/Stack_08.raw" };
+                           "music/Stack_08.raw", "music/Stack_09.raw" };
 
     switch (this->cookie->sfx) {
 
         case SoundEffects::SFX:
         case SoundEffects::Both:
 
-            if (soundEffectFile.openRO(sounds[static_cast<uint8_t>(theme)])) {
+            switch (theme) {
 
-                auto& music = Audio::play<1>(soundEffectFile);
-                music.setLoop(false);
+                case SoundTheme::Awesome:
 
+                    if (awesomeFile.openRO(sounds[static_cast<uint8_t>(theme)])) {
+
+                        auto& music = Audio::play<2>(awesomeFile);
+                        music.setLoop(false);
+
+                    }
+
+                    break;
+
+                default:
+
+                    if (soundEffectFile.openRO(sounds[static_cast<uint8_t>(theme)])) {
+
+                        auto& music = Audio::play<1>(soundEffectFile);
+                        music.setLoop(false);
+
+                    }
+
+                    break;
             }
 
             break;

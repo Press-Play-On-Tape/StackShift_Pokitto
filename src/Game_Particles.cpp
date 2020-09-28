@@ -34,14 +34,14 @@ void Game::renderParticles() {
 
                             case 0 ... 9:
 
-                                PD::drawBitmap(particle.getX() - 5, particle.getY() - 4, Images::ScoreBalloons_Sml[static_cast<uint8_t>(particle.getColour())]);
+                                PD::drawBitmap(particle.getX() - 6, particle.getY() - 5, Images::ScoreBalloons_Sml[static_cast<uint8_t>(particle.getColour())]);
                                 PD::setCursor(particle.getX(), particle.getY());
                                 PD::print(particle.getScore(), 10);
                                 break;
 
                             case 10 ... 99:
 
-                                PD::drawBitmap(particle.getX() - 4, particle.getY() - 4, Images::ScoreBalloons_Med[static_cast<uint8_t>(particle.getColour())]);
+                                PD::drawBitmap(particle.getX() - 5, particle.getY() - 5, Images::ScoreBalloons_Med[static_cast<uint8_t>(particle.getColour())]);
                                 for (uint8_t j = 2, x2 = particle.getX(); j > 0; --j, x2 += 8) {
                         
                                     PD::setCursor(x2, particle.getY());
@@ -52,7 +52,7 @@ void Game::renderParticles() {
 
                             case 100 ... 999:
 
-                                PD::drawBitmap(particle.getX() - 3, particle.getY() - 4, Images::ScoreBalloons_Lrg[static_cast<uint8_t>(particle.getColour())]);
+                                PD::drawBitmap(particle.getX() - 4, particle.getY() - 5, Images::ScoreBalloons_Lrg[static_cast<uint8_t>(particle.getColour())]);
                                 for (uint8_t j = 3, x2 = particle.getX(); j > 0; --j, x2 += 8) {
                         
                                     PD::setCursor(x2, particle.getY());
@@ -63,6 +63,14 @@ void Game::renderParticles() {
 
                         }
 
+                        break;
+
+                    case ParticleType::Clear:
+                        PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_Clear);
+                        break;
+
+                    case ParticleType::ClearStar:
+                        PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_ClearStar);
                         break;
 
                     default:
@@ -204,6 +212,73 @@ void Game::launchPointsParticles(uint16_t points, Color color, uint8_t delay) {
 
 }
 
+
+void Game::launchClearParticles(uint16_t points, Color color, uint8_t delay) {
+
+    currentScore += points;
+    uint8_t scoreCount = 90;
+    uint8_t launched = 0;    
+
+    for (Particle &particle : this->particles) {
+
+        if (!particle.isActive()) {
+
+            switch (launched) {
+
+                case 1 ... 30:
+                    particle.setX(110 - 10);
+                    particle.setY(88 - 9);
+                    particle.setVelX(random(2, 6) * (random(0, 2) == 0 ? -1 : 1));
+                    particle.setVelY(random(2, 6) * (random(0, 2) == 0 ? -1 : 1));
+                    particle.setCounter(75);
+                    particle.setSize(1);
+                    particle.setType(ParticleType::ClearStar);
+                    particle.setColour(color);
+                    particle.setScore(points);
+                    particle.setDelay(launched);
+                    break;
+
+                case 31 ... 59:
+
+                    particle.setX(BOARD_X_OFFSET + random(BOARD_WIDTH * PART_SIZE));
+                    particle.setY(((BOARD_HEIGHT - 1)*PART_SIZE) + random(PART_SIZE + 2) + BOARD_Y_OFFSET);
+                    particle.setVelX(random(-7, 8));
+                    particle.setVelY(random(4, 9));
+                    particle.setCounter(random(20, 86));
+                    particle.setSize(random(1, 5));
+                    particle.setType(ParticleType::Zero);
+                    particle.setColour(color);
+                    particle.setDelay(21);
+
+                    break;
+
+            }
+
+            launched++;
+
+        }
+
+    }
+
+
+    // Make sure sign is always available ..
+
+    Particle &particle = this->particles[PARTICLE_MAX - 1];
+    particle.setX(110 - (118 / 2));
+    particle.setY(88 - (44 / 2));
+    particle.setVelX(0);
+    particle.setVelY(6);
+    particle.setCounter(75);
+    particle.setSize(1);
+    particle.setType(ParticleType::Clear);
+    particle.setColour(color);
+    particle.setScore(points);
+    particle.setDelay(0);
+
+    this->shake.explosionSize = ExplosionSize::Large;
+    this->shake.count = 10;
+
+}
 
 
 void Game::launchHighScoreParticles() {

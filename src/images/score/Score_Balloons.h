@@ -17,6 +17,9 @@ namespace Images {
     #include "Score_Balloon_Lrg_Yellow.h"
     #include "Score_Balloon_Lrg_White.h"
 
+    #include "Score_Balloon_Clear.h"
+    #include "Score_Balloon_ClearStar.h"
+
     const uint8_t * const ScoreBalloons_Sml[] = { 
         Score_Balloon_Sml_Green,
         Score_Balloon_Sml_Red,

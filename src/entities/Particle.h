@@ -61,6 +61,25 @@ struct Particle {
             }
 
 
+            // Return early if 'Clear' particle type ..
+
+            if (this->type == ParticleType::Clear) {
+
+                if (this->counter > 0) this->counter--;
+                return;
+
+            }
+
+            if (this->type == ParticleType::ClearStar) {
+
+                if (this->counter > 0) this->counter--;
+                this->x = this->x + this->velx;
+                this->y = this->y + this->vely;
+                return;
+
+            }
+
+
             // move your particle based on direction, whatever ..
 
             this->vely -= gravity * this->pSize;

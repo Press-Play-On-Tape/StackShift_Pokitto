@@ -25,6 +25,7 @@ class Game {
 
         File soundEffectFile;
         File mainThemeFile;
+        File awesomeFile;
 
         bool firstLanded = 1;
 
@@ -80,6 +81,7 @@ class Game {
         void launchParticles(uint8_t col, uint8_t row, ExplosionSize explosionSize);
         void launchPointsParticles(uint16_t points, Color color, uint8_t delay);
         void launchHighScoreParticles();
+        void launchClearParticles(uint16_t points, Color color, uint8_t delay);
         void moveDown();
         bool moveCycle(); // Skip boardCycle
         bool markScoringRows();
@@ -98,6 +100,7 @@ class Game {
         void drawNextColumn();
         void drawDropped();
         void drawTrack();
+        void draw_waves();
 
 
         // Utilities ..
@@ -118,7 +121,7 @@ class Game {
         BoardType convertAnyToExisting(BoardType boardType);
         Color getColor(BoardType boardType);
         BoardType getRandomBoardType(Level level, uint8_t rock);
-
+        
 };
 
 
