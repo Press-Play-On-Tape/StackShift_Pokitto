@@ -10,8 +10,13 @@ using PD = Pokitto::Display;
 
 void Game::resetGame() {
     
-    if (currentScore > highScore) highScore = currentScore;
-    currentScore = 0;
+    if (this->currentScore > this->highScore) this->highScore = this->currentScore;
+    this->currentScore = 0;
+    this->lastScore = 0;
+    this->timer = 99;
+    this->timer_seq = 0;
+    this->timer_counter = 16;
+    this->clearDecks = 0;
 
     for (uint8_t row = 0; row < BOARD_HEIGHT; row++) {
         for (uint8_t col = 0; col < BOARD_WIDTH; col++) {

@@ -831,7 +831,7 @@ void Game::clearMarkedBlocks() {
     }
     else {
 
-//        return;  //SJH
+        return;  
 
     }
 

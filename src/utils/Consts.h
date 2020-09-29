@@ -1,6 +1,6 @@
 #pragma once
 
-#define _SOUNDS
+#define SOUNDS
 #define _DEBUG
 #define _DEBUG_ROCKS
 
@@ -16,7 +16,7 @@
 #define wordBufferLength 10
 
 #define NO_BLOCK_FOUND 255
-#define COOKIE_INITIALISED 14
+#define COOKIE_INITIALISED 15
 
 #define ROCK_FREQ_LOW_EASY 20
 #define ROCK_FREQ_MED_EASY 15
@@ -38,7 +38,8 @@ enum class SoundEffects : uint8_t {
 
 enum class Level : uint8_t {
     Easy,
-    Hard
+    Hard,
+    Timer
 };
 
 enum class SoundTheme : uint8_t {
@@ -48,6 +49,7 @@ enum class SoundTheme : uint8_t {
     Bubble_Long,
     Chime,
     Awesome,
+    Timer,
     Unknown
 };
 

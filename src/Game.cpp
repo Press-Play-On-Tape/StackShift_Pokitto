@@ -15,11 +15,44 @@ void Game::setup(GameCookie *cookie) {
 
 void Game::loop(){
 
-    
-
     PD::clear();
     PC::buttons.pollButtons();
 
+
+    // Decrement hourglass and timer if required ..
+
+    if (this->level == Level::Timer && this->gameState == GameState::Play) {
+
+        if (this->timer_seq > 0) this->timer_seq--;
+
+        this->timer_counter--;
+
+        if (this->timer_counter == 0) {
+
+            this->timer--;
+            this->timer_counter = 22 - (currentScore / 1000);
+
+            if (this->timer == 0) {
+
+                this->gameState = GameState::End;
+
+            }
+
+        }
+
+
+        // If we have passed a 500 mark, reset the timer ..
+
+        if (this->currentScore >= this->lastScore + 500) {
+
+            this->timer_seq = 15;
+            this->timer = 99;
+            this->lastScore = this->lastScore + 500;
+            this->playSoundEffect(SoundTheme::Timer);
+
+        }
+
+    }
 
 
 
@@ -58,7 +91,6 @@ void Game::loop(){
     }
 
 
-
     // Game state ..
 
     switch (this->gameState) {
@@ -86,11 +118,17 @@ void Game::loop(){
             #define GAME_SPEED_INC_HARD 800
             #define GAME_SPEED_INC_EASY 1600
 
-            if (this->level == Level::Easy) {
-                gameSpeed = (currentScore < (GAME_SPEED_INC_EASY * 6) ? 28 - ((currentScore / GAME_SPEED_INC_EASY) * 4) : 4);
-            }   
-            else {          
-                gameSpeed = (currentScore < (GAME_SPEED_INC_HARD * 6) ? 28 - ((currentScore / GAME_SPEED_INC_HARD) * 4) : 4);
+            switch (this->level) {
+
+                case Level::Easy:
+                    gameSpeed = (currentScore - (this->clearDecks * 500) < (GAME_SPEED_INC_EASY * 6) ? 28 - ((currentScore - (this->clearDecks * 500) / GAME_SPEED_INC_EASY) * 4) : 4);
+                    break;
+
+                case Level::Hard:
+                case Level::Timer:
+                    gameSpeed = (currentScore - (this->clearDecks * 500) < (GAME_SPEED_INC_HARD * 6) ? 28 - ((currentScore - (this->clearDecks * 500) / GAME_SPEED_INC_HARD) * 4) : 4);
+                    break;
+
             }
 
             drawDropped();

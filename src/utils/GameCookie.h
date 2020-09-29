@@ -10,8 +10,10 @@ class GameCookie : public Pokitto::Cookie {
 	public:
 
 		uint8_t initialised;
-		uint32_t score[2][5] = { 50, 40, 30, 20, 10, 100, 80, 60, 40, 20 };
-		char initials[2][5][3] = { 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5 };
+		uint32_t score[3][5] = 	  { 50, 40, 30, 20, 10, 100, 80, 60, 40, 20, 150, 120, 90, 60, 30 };
+		char initials[3][5][3] =  { 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 
+									1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 
+									1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5 };
 		uint32_t lastScore = 0;
 		uint32_t lastScoreIndex = 0;
 		SoundEffects sfx = SoundEffects::Both;
@@ -36,7 +38,13 @@ class GameCookie : public Pokitto::Cookie {
 			this->score[1][3] = 40;
 			this->score[1][4] = 20;
 
-			for (uint8_t z = 0; z < 2; z++) {
+			this->score[2][0] = 150;
+			this->score[2][1] = 120;
+			this->score[2][2] = 90;
+			this->score[2][3] = 60;
+			this->score[2][4] = 30;
+
+			for (uint8_t z = 0; z < 3; z++) {
 
 				for (uint8_t x = 0; x < 5; x++) {
 

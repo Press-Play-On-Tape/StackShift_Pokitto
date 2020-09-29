@@ -71,18 +71,7 @@ void Game::renderParticles() {
 
                     case ParticleType::ClearStar:
 
-                        switch (particle.getCounter()) {
-
-                            case 6 ... 100:
-                                PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_ClearStar[0]);
-                                break;
-
-                            case 0 ... 4:
-                                PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_ClearStar[5 - particle.getCounter()]);
-                                break;
-
-                        }
-
+                        PD::drawBitmap(particle.getX(), particle.getY(), Images::Score_Balloon_ClearStar);
                         break;
 
                     default:

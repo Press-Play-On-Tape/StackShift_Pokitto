@@ -21,7 +21,7 @@ void Game::doTitle() {
 
     }
 
-    if (this->splashScreenVariables.buttonCounter == 0 && PC::buttons.pressed(BTN_RIGHT) && this->titleCursor  < 3) {
+    if (this->splashScreenVariables.buttonCounter == 0 && PC::buttons.pressed(BTN_RIGHT) && this->titleCursor  < 4) {
 
         this->titleCursor++;
 
@@ -43,11 +43,16 @@ void Game::doTitle() {
                 break;
 
             case 2:
+                this->level = Level::Timer;
+                this->gameState = GameState::Play_Init;
+                break;
+
+            case 3:
                 this->cookie->setScoreIndex(NO_SCORE);
                 this->gameState = GameState::HighScore_Init;
                 break;
 
-            case 3:
+            case 4:
                 this->cookie->sfx++;
                 this->cookie->saveCookie();
                 break;
@@ -58,56 +63,36 @@ void Game::doTitle() {
     }
    
 
-//    if (Utils::isFrameCount(46)) this->launchHighScoreParticles();
-
     draw_waves();
 
     PD::drawBitmap(1, 30, Images::Title);
-
-
     PD::drawBitmap(98, 30, Images::Title_Anim[(PC::frameCount / 2) % 4]);
-
-    PD::setColor(this->titleCursor == 0 ? 7 : 5, 0);
-    PD::setCursor(12, 140);
-    PD::print("EASY");
-
-    PD::setColor(this->titleCursor == 1 ? 7 : 5, 0);
-    PD::setCursor(58, 140);
-    PD::print("HARD");
-
-    PD::setColor(this->titleCursor == 2 ? 7 : 5, 0);
-    PD::setCursor(105, 140);
-    PD::print("SCORES");
-
-    PD::setColor(this->titleCursor == 3 ? 7 : 5, 0);
+    PD::drawBitmap(6, 140, this->titleCursor == 0 ? Images::Easy_Level_White : Images::Easy_Level_Grey);
+    PD::drawBitmap(46, 140, this->titleCursor == 1 ? Images::Hard_Level_White : Images::Hard_Level_Grey);
+    PD::drawBitmap(86, 140, this->titleCursor == 2 ? Images::Time_White : Images::Time_Grey);
+    PD::drawBitmap(132, 140, this->titleCursor == 3 ? Images::Scores_White : Images::Scores_Grey);
 
     switch (this->cookie->sfx) {
 
         case SoundEffects::Music:
-            PD::setCursor(166, 140);
-            PD::print("MUSIC");
+            PD::drawBitmap(187, 139, this->titleCursor == 4 ? Images::Sound_Music_White: Images::Sound_Music_Grey);
             break;
 
         case SoundEffects::SFX:
-            PD::setCursor(174, 140);
-            PD::print("SFX");
+            PD::drawBitmap(187, 139, this->titleCursor == 4 ? Images::Sound_SFX_White: Images::Sound_SFX_Grey);
             break;
 
         case SoundEffects::Both:
-            PD::setCursor(170, 140);
-            PD::print("BOTH");
+            PD::drawBitmap(187, 139, this->titleCursor == 4 ? Images::Sound_Both_White: Images::Sound_Both_Grey);
             break;
 
         default:
-            PD::setCursor(170, 140);
-            PD::print("NONE");
+            PD::drawBitmap(187, 139, this->titleCursor == 4 ? Images::Sound_None_White: Images::Sound_None_Grey);
             break;
     }
 
-    constexpr uint8_t xPos[] = { 26, 71, 127, 184 };
+    constexpr uint8_t xPos[] = { 16, 55, 99, 149, 198 };
     PD::drawBitmap(xPos[this->titleCursor], 128, Images::Symbols[static_cast<uint8_t>(BoardType::Existing_Red)][0]);
-
-    //this->renderParticles();
 
 }
 

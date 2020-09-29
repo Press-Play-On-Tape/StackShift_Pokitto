@@ -12,22 +12,35 @@ void Game::drawScore(bool renderHeadings, bool grey) {
 
     if (renderHeadings) {
 
-        if (this->level == Level::Easy) {
-            if (grey) {
-                PD::drawBitmap(17, 44, Images::Easy_Grey);
-            }
-            else {
-                PD::drawBitmap(17, 44, Images::Easy);
-            }
+        switch (this->level) {
 
-        }
-        else {
-            if (grey) {
-                PD::drawBitmap(17, 44, Images::Hard_Grey);
-            }
-            else {
-                PD::drawBitmap(17, 44, Images::Hard);
-            }
+            case Level::Easy:
+                if (grey) {
+                    PD::drawBitmap(17, 44, Images::Easy_Grey);
+                }
+                else {
+                    PD::drawBitmap(17, 44, Images::Easy);
+                }
+                break;
+
+            case Level::Hard:
+                if (grey) {
+                    PD::drawBitmap(17, 44, Images::Hard_Grey);
+                }
+                else {
+                    PD::drawBitmap(17, 44, Images::Hard);
+                }
+                break;
+
+            case Level::Timer:
+                if (grey) {
+                    PD::drawBitmap(12, 44, Images::Timer_Grey);
+                }
+                else {
+                    PD::drawBitmap(12, 44, Images::Timer);
+                }
+                break;
+
         }
 
         if (grey) {
@@ -94,6 +107,48 @@ void Game::drawScore(bool renderHeadings, bool grey) {
 
     }
 
+
+    // Render Hourglass?
+
+    if (this->level == Level::Timer && gameState == GameState::Play) {
+
+        uint8_t digits[5] = {};
+        uint16_t target = this->currentScore - this->lastScore;
+        Utils::extractDigits(digits, target);
+        PD::setColor(grey ? 5 : 7, 0);
+
+        for (uint8_t j = 3, x2 = 6; j > 0; --j, x2 += 8) {
+
+            PD::setCursor(x2, 132);
+            PD::print(digits[j - 1], 14);
+
+        }
+
+        PD::setCursor(29, 132);
+        PD::print("/");
+        PD::print("500");
+
+        if ((this->timer < 10 && (PC::frameCount / 16) % 2 == 0) || this->timer >= 10) {
+
+            PD::drawBitmap(171, 44, grey ? Images::Hourglass_Grey : Images::Hourglass[this->timer_seq / 4]);
+            
+            if (grey) {
+                PD::setColor(5, 0);
+            }
+            else {
+                PD::setColor(this->timer < 10 ? 6 : 7, 0);
+            }
+            
+            PD::setCursor(174, 68);
+
+            if (this->timer < 10) PD::print("0");
+            PD::print(this->timer, 10);
+
+        }
+
+    }
+
+
 }
 
 int16_t xPos_Top = 0;
@@ -101,7 +156,7 @@ int16_t xPos_Bot = 0;
 
 void Game::drawFrame() {
 
-    uint8_t color = ((this->currentScore / 512) % 4) + 1;
+    uint8_t color = ((this->currentScore / 500) % 4) + 1;
 
     for (int16_t x = 0; x < 3; x++) {
 

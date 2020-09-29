@@ -41,12 +41,18 @@ class Game {
 
         uint16_t currentScore = 0;
         uint16_t highScore = 0;
+        uint16_t lastScore = 0;
 
         uint8_t scoringRowCount;
 
         Particle particles[PARTICLE_MAX];
         SoundTheme theme = SoundTheme::Unknown;
         GameCookie *cookie;
+
+        uint8_t timer = 99;
+        uint8_t timer_seq = 0;
+        uint8_t timer_counter = 16;
+        uint8_t clearDecks = 0;
 
 
     public:

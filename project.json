@@ -2092,6 +2092,240 @@
 		},
 		"/src/images/score/Score_Balloon_ClearStar_02.h": {
 			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_ClearStar.png": {
+			"sdcard": false
+		},
+		"/Version2.gif": {
+			"sdcard": false
+		},
+		"/Version1.gif": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_00.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_01.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_02.png": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_03.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Time_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Time_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Scores_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Scores_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Both_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Both_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Music_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Music_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Soun_SFX_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_SFX_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Titles.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_00.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_03.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Time_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Time_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Scores_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Scores_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Music_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Music_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Soun_SFX_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_SFX_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_02.h": {
+			"sdcard": false
+		},
+		"/src/images/tapes/Hourglass_01.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Both_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Both_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_SFX_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_SFX_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_Level_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_Level_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_Level_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_Level_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_Level_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Hard_Level_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_Level_White.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Easy_Level_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_Both_Grey copy.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_None_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_None_White.png": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_None_Grey.h": {
+			"sdcard": false
+		},
+		"/src/images/title/Sound_None_White.h": {
+			"sdcard": false
+		},
+		"/src/images/hourglass": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_00.h": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_00.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_01.h": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_01.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_02.h": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_02.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_03.h": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_03.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglasses.h": {
+			"sdcard": false
+		},
+		"/src/images/game/Timer.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Timer copy.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Timer_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/game/Timer.h": {
+			"sdcard": false
+		},
+		"/src/images/game/Timer_Grey.h": {
+			"sdcard": false
+		},
+		"/music/zapsplat_multimedia_game_sound_digital_high_pitched_positive_success_complete_tone_55832.mp3": {
+			"sdcard": false
+		},
+		"/music/Stack_10.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/Stack_10.mp3": {
+			"sdcard": false
+		},
+		"/music_Orig/Stack_09.mp3": {
+			"sdcard": false
+		},
+		"/music/Stack_10.raw": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_00 copy.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Hourglass_Grey.h": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,

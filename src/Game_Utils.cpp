@@ -430,9 +430,10 @@ void Game::playSoundEffect(SoundTheme theme) {
 
     #ifdef SOUNDS
 
-    char sounds[6][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
+    char sounds[7][19] = { "music/Stack_01.raw", "music/Stack_02.raw", 
                            "music/Stack_03.raw", "music/Stack_04.raw",
-                           "music/Stack_08.raw", "music/Stack_09.raw" };
+                           "music/Stack_08.raw", "music/Stack_09.raw",
+                           "music/Stack_10.raw" };
 
     switch (this->cookie->sfx) {
 
@@ -442,6 +443,7 @@ void Game::playSoundEffect(SoundTheme theme) {
             switch (theme) {
 
                 case SoundTheme::Awesome:
+                case SoundTheme::Timer:
 
                     if (awesomeFile.openRO(sounds[static_cast<uint8_t>(theme)])) {
 

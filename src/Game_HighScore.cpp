@@ -81,7 +81,7 @@ void Game::doHighScore() {
             this->cursor--;
         }
 
-        if (PC::buttons.pressed(BTN_RIGHT) && this->cursor < 2) {
+        if (PC::buttons.pressed(BTN_RIGHT) && this->cursor < 3) {
             this->cursor++;
         }
 
@@ -113,12 +113,25 @@ void Game::doHighScore() {
     }
     else {
 
-        if (PC::buttons.pressed(BTN_LEFT) && this->level == Level::Hard) {
-            this->level = Level::Easy;
+        if (PC::buttons.pressed(BTN_LEFT)) {
+
+            if (this->level == Level::Timer) {
+                this->level = Level::Hard;
+            }
+            else {
+                this->level = Level::Easy;
+            }
         }
 
-        if (PC::buttons.pressed(BTN_RIGHT) && this->level == Level::Easy) {
-            this->level = Level::Hard;
+        if (PC::buttons.pressed(BTN_RIGHT)) {
+            
+            if (this->level == Level::Easy) {
+                this->level = Level::Hard;
+            }
+            else {
+                this->level = Level::Timer;
+            }
+
         }
 
         if (PC::buttons.pressed(BTN_A)) {
@@ -156,15 +169,26 @@ void Game::doHighScore() {
     PD::drawBitmap(24, 10, Images::HighScore);
 
 
-    PD::setCursor(92, 89);
-    PD::drawLine(40, 93, 86, 93);
-    PD::drawLine(132, 93, 178, 93);
+    PD::drawLine(40, 93, 84, 93);
+    PD::drawLine(134, 93, 178, 93);
 
-    if (this->level == Level::Easy) {
-        PD::print("EASY");
-    }
-    else {
-        PD::print("HARD");
+    switch (this->level) {
+
+        case Level::Easy:
+            PD::setCursor(92, 89);
+            PD::print("EASY");
+            break;
+
+        case Level::Hard:
+            PD::setCursor(92, 89);
+            PD::print("HARD");
+            break;
+
+        case Level::Timer:
+            PD::setCursor(88, 89);
+            PD::print("TIMER");
+            break;
+            
     }
 
     PD::setColor(7, 0);
