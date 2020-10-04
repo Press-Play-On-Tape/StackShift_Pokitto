@@ -110,41 +110,55 @@ void Game::drawScore(bool renderHeadings, bool grey) {
 
     // Render Hourglass?
 
-    if (this->level == Level::Timer && gameState == GameState::Play) {
+    if (this->level == Level::Timer && this->gameState != GameState::End) {
 
         uint8_t digits[5] = {};
         uint16_t target = this->currentScore - this->lastScore;
         Utils::extractDigits(digits, target);
         PD::setColor(grey ? 5 : 7, 0);
 
-        for (uint8_t j = 3, x2 = 6; j > 0; --j, x2 += 8) {
+        for (uint8_t j = 3, x2 = 152; j > 0; --j, x2 += 8) {
 
-            PD::setCursor(x2, 132);
+            PD::setCursor(x2, 67);
             PD::print(digits[j - 1], 14);
 
         }
 
-        PD::setCursor(29, 132);
+        PD::setCursor(178, 67);
         PD::print("/");
         PD::print("500");
+        
+        
+        //PD::setColor(grey ? 1 : 2, 0);
+        PD::setColor(0, 0);
 
-        if ((this->timer < 10 && (PC::frameCount / 16) % 2 == 0) || this->timer >= 10) {
 
-            PD::drawBitmap(171, 44, grey ? Images::Hourglass_Grey : Images::Hourglass[this->timer_seq / 4]);
-            
-            if (grey) {
-                PD::setColor(5, 0);
-            }
-            else {
-                PD::setColor(this->timer < 10 ? 6 : 7, 0);
-            }
-            
-            PD::setCursor(174, 68);
+        float gaugeWidth = 57 - static_cast<float>(57) * static_cast<float>(this->timer) / static_cast<float>(100);
 
-            if (this->timer < 10) PD::print("0");
-            PD::print(this->timer, 10);
+        PD::drawBitmap(153, 57, grey ? Images::Gauge_Grey : Images::Gauge);
 
+        PD::fillRect(154 + 57, 59, -gaugeWidth, 2);
+        if (gaugeWidth >= 1 && gaugeWidth < 57) {
+            PD::fillRect(155 + 55, 58, -gaugeWidth + 1, 4);
         }
+
+        // if ((this->timer < 10 && (PC::frameCount / 16) % 2 == 0) || this->timer >= 10) {
+
+        //     PD::drawBitmap(171, 44, grey ? Images::Hourglass_Grey : Images::Hourglass[this->timer_seq / 4]);
+            
+        //     if (grey) {
+        //         PD::setColor(5, 0);
+        //     }
+        //     else {
+        //         PD::setColor(this->timer < 10 ? 6 : 7, 0);
+        //     }
+            
+        //     PD::setCursor(174, 68);
+
+        //     if (this->timer < 10) PD::print("0");
+        //     PD::print(this->timer, 10);
+
+        // }
 
     }
 

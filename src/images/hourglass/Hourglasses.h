@@ -7,6 +7,8 @@ namespace Images {
     #include "Hourglass_02.h"
     #include "Hourglass_03.h"
     #include "Hourglass_Grey.h"
+    #include "Gauge_Grey.h"
+    #include "Gauge.h"
 
     const uint8_t * const Hourglass[4] = { 
         Hourglass_00, 

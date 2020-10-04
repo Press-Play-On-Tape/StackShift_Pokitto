@@ -30,7 +30,7 @@ void Game::loop(){
         if (this->timer_counter == 0) {
 
             this->timer--;
-            this->timer_counter = 22 - (currentScore / 1000);
+            this->timer_counter = (this->currentScore < 5000 ? 20 - (this->currentScore / 1000) : 15);
 
             if (this->timer == 0) {
 
@@ -121,12 +121,12 @@ void Game::loop(){
             switch (this->level) {
 
                 case Level::Easy:
-                    gameSpeed = (currentScore - (this->clearDecks * 500) < (GAME_SPEED_INC_EASY * 6) ? 28 - ((currentScore - (this->clearDecks * 500) / GAME_SPEED_INC_EASY) * 4) : 4);
+                    gameSpeed = (currentScore - (this->clearDecks * 500) < (GAME_SPEED_INC_EASY * 6) ? 28 - (((currentScore - (this->clearDecks * 500)) / GAME_SPEED_INC_EASY) * 4) : 4);
                     break;
 
                 case Level::Hard:
                 case Level::Timer:
-                    gameSpeed = (currentScore - (this->clearDecks * 500) < (GAME_SPEED_INC_HARD * 6) ? 28 - ((currentScore - (this->clearDecks * 500) / GAME_SPEED_INC_HARD) * 4) : 4);
+                    gameSpeed = (currentScore - (this->clearDecks * 500) < (GAME_SPEED_INC_HARD * 6) ? 28 - (((currentScore - (this->clearDecks * 500)) / GAME_SPEED_INC_HARD) * 4) : 4);
                     break;
 
             }

@@ -2326,6 +2326,51 @@
 		},
 		"/src/images/hourglass/Hourglass_Grey.h": {
 			"sdcard": false
+		},
+		"/src/images/hourglass/StackShift_Pokitto.bin.1.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Gauge.png": {
+			"sdcard": false
+		},
+		"/src/images/score/Score_Balloon_Clear.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Gauge copy.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Gauge_Grey.png": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Gauge.h": {
+			"sdcard": false
+		},
+		"/src/images/hourglass/Gauge_Grey.h": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_Pokitto.bin.1.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_Pokitto.bin.4.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_04.png": {
+			"sdcard": false
+		},
+		"/distributable/StackShift(2).pop": {
+			"sdcard": false
+		},
+		"/StackShift.pop.zip": {
+			"sdcard": false
+		},
+		"/distributable/StackShift_04.h": {
+			"sdcard": false
+		},
+		"/StachShift.zip": {
+			"sdcard": false
+		},
+		"/StackShift_Pokitto.bin.1.gif.sb-636f4622-6RpVOR": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,

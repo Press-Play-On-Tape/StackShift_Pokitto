@@ -820,7 +820,7 @@ void Game::clearMarkedBlocks() {
 
     // Clear the deck>
 
-    if (this->currentScore > 100) {
+    if (this->currentScore > 25) {//SJH
 
         for (uint8_t col = 0; col < BOARD_WIDTH; col++) {
 
@@ -837,6 +837,7 @@ void Game::clearMarkedBlocks() {
 
     launchClearParticles(500, Color::White, 0);
     this->playSoundEffect(SoundTheme::Awesome);
+    this->clearDecks++;
 
 }
 

@@ -81,7 +81,7 @@ void Game::doHighScore() {
             this->cursor--;
         }
 
-        if (PC::buttons.pressed(BTN_RIGHT) && this->cursor < 3) {
+        if (PC::buttons.pressed(BTN_RIGHT) && this->cursor < 2) {
             this->cursor++;
         }
 
@@ -103,10 +103,17 @@ void Game::doHighScore() {
             
         }
 
-        if (PC::buttons.pressed(BTN_A) && cookie->initials[static_cast<uint8_t>(this->level)][index][0] != 0 && cookie->initials[static_cast<uint8_t>(this->level)][index][1] != 0 && cookie->initials[static_cast<uint8_t>(this->level)][index][2] != 0) {
+        if (PC::buttons.pressed(BTN_A)) {
 
-            cookie->saveCookie();
-            cookie->setLastScore(this->level, 0);
+            if (cookie->initials[static_cast<uint8_t>(this->level)][index][0] != 0 && cookie->initials[static_cast<uint8_t>(this->level)][index][1] != 0 && cookie->initials[static_cast<uint8_t>(this->level)][index][2] != 0) {
+
+                cookie->saveCookie();
+                cookie->setLastScore(this->level, 0);
+
+            }
+            else if (this->cursor < 2 && cookie->initials[static_cast<uint8_t>(this->level)][index][this->cursor] != 0 ) {
+                this->cursor++;
+            }
             
         }
 

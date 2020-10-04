@@ -121,28 +121,28 @@ struct Particle {
                 this->x = this->boundL;
                 this->velx = -this->velx;
             }
-if (this->type == ParticleType::ClearStar) {
-    printf("y %i, ", this->y);
-}
-else {
 
-            if (this->y > (BOARD_HEIGHT*PART_SIZE) + 4) { // above (below) board height - bottom of screen
+            if (this->type != ParticleType::ClearStar) {
 
-                this->y = (BOARD_HEIGHT*PART_SIZE) + 4;
+                if (this->y > (BOARD_HEIGHT*PART_SIZE) + 4) { // above (below) board height - bottom of screen
 
-                if(this->vely > rThresh) {
+                    this->y = (BOARD_HEIGHT*PART_SIZE) + 4;
 
-                    this->vely = -this->vely * rThresh;
+                    if(this->vely > rThresh) {
 
-                }
-                else {
+                        this->vely = -this->vely * rThresh;
 
-                    this->vely = 0;
+                    }
+                    else {
+
+                        this->vely = 0;
+
+                    }
 
                 }
 
             }
-}
+
             if (this->type != ParticleType::Score && this->type != ParticleType::ClearStar) {
                 if (this->y < 0) { // below (above) board - top of screen
                     if (this->vely > rThresh) {
@@ -153,11 +153,7 @@ else {
                     }
                 }           
             }
-if (this->type == ParticleType::ClearStar) {
-    printf("y, vely");
-    Utils::printffloat(this->vely);
-    printf("\n");
-}
+
             this->x += this->velx;
             this->y -= this->vely;
 

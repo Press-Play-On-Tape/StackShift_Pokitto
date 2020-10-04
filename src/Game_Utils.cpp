@@ -506,7 +506,7 @@ void Game::playTheme(uint8_t trackNumber) {
 
 BoardType Game::getRandomBoardType(Level level, uint8_t rock) {
 
-    if (level == Level::Hard) {
+    if (level == Level::Hard || level == Level::Timer) {
 
         if (rock > 0 && random(0, rock) == 0) {
 
